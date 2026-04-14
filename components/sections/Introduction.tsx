@@ -17,10 +17,10 @@ export default function Introduction() {
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Introduction</h2>
             <div className="space-y-4 text-foreground/80 leading-relaxed">
               <p>
-                这里是第一段自我介绍，讲述我是谁，我在做什么，以及我对技术和生活的热情。
+                你好，我是 Peter，一名热爱前端技术的开发者。比起追逐最新的框架，我更在意代码是否优雅、用户体验是否流畅，以及一个产品从想法到落地的完整过程。
               </p>
               <p>
-                这里是第二段自我介绍，可以提到我的工作经历、技术方向，或者一些有趣的生活理念。
+                工作之余，我喜欢用音乐填满通勤的间隙，用游戏探索另一个世界的规则，用徒步感受山风与海拔的变化，用阅读和听书保持思考的习惯。我相信技术是为了让生活更好，而生活本身才是目的。
               </p>
             </div>
             <div className="flex flex-wrap gap-3 pt-2">
