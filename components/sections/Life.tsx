@@ -5,17 +5,12 @@ import Image from "next/image";
 import {
   lifeCategories,
   getFeaturedItems,
-  getTimelineItems,
 } from "@/lib/life-data";
 
 export default function Life() {
   const [activeCategory, setActiveCategory] = useState("all");
 
   const filteredItems = getFeaturedItems(activeCategory);
-  const totalCount =
-    activeCategory === "all"
-      ? 0
-      : getTimelineItems(activeCategory).length;
 
   return (
     <section id="life" className="py-24 px-6">
@@ -86,38 +81,27 @@ export default function Life() {
         )}
 
         {/* 查看全部入口 */}
-        {activeCategory !== "all" && (
-          <div className="mt-8 flex items-center justify-between">
-            <p className="text-sm text-foreground/50">
-              当前展示 {filteredItems.length} 张精选照片，该主题共有 {totalCount} 张记录。
-            </p>
-            <a
-              href={`/life/${activeCategory}`}
-              className="inline-flex items-center gap-1 rounded-full bg-foreground/5 px-4 py-1.5 text-sm font-medium text-foreground/80 hover:bg-foreground/10 transition-colors"
+        <div className="mt-8 flex items-center justify-end">
+          <a
+            href={`/life/${activeCategory}`}
+            className="inline-flex items-center gap-1 rounded-full bg-foreground/5 px-4 py-1.5 text-sm font-medium text-foreground/80 hover:bg-foreground/10 transition-colors"
+          >
+            查看全部
+            <svg
+              className="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              viewBox="0 0 24 24"
             >
-              查看全部
-              <svg
-                className="h-4 w-4"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
-                />
-              </svg>
-            </a>
-          </div>
-        )}
-
-        {activeCategory === "all" && (
-          <p className="mt-8 text-sm text-foreground/50">
-            这里展示的是各主题中优中选优的照片，点击上方标签可进入对应主题查看全部记录。
-          </p>
-        )}
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
     </section>
   );

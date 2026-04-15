@@ -431,6 +431,11 @@ export function getFeaturedItems(category: string) {
 }
 
 export function getTimelineItems(category: string) {
+  if (category === "all") {
+    return lifeItems
+      .filter((item) => item.bestOfBest)
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  }
   return lifeItems
     .filter((item) => item.category === category)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());

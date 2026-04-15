@@ -7,9 +7,7 @@ import {
 } from "@/lib/life-data";
 
 export function generateStaticParams() {
-  return lifeCategories
-    .filter((c) => c.key !== "all")
-    .map((c) => ({ category: c.key }));
+  return lifeCategories.map((c) => ({ category: c.key }));
 }
 
 export async function generateMetadata({
@@ -30,16 +28,14 @@ export default async function LifeCategoryPage({
   params: Promise<{ category: string }>;
 }) {
   const { category } = await params;
-  const valid = lifeCategories.some(
-    (c) => c.key === category && c.key !== "all"
-  );
+  const valid = lifeCategories.some((c) => c.key === category);
   if (!valid) {
     notFound();
   }
 
   const items = getTimelineItems(category);
   const label = getCategoryLabel(category);
-  const otherCategories = lifeCategories.filter((c) => c.key !== "all");
+  const otherCategories = lifeCategories;
 
   return (
     <main className="mx-auto max-w-4xl px-6 py-16">
@@ -67,9 +63,7 @@ export default async function LifeCategoryPage({
         <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
           {label}
         </h1>
-        <p className="mt-2 text-foreground/60">
-          共 {items.length} 条记录，按时间顺序排列
-        </p>
+
       </div>
 
       {/* Category switcher */}
