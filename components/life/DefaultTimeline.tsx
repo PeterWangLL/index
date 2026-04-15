@@ -6,9 +6,10 @@ import type { LifeItem } from "@/lib/life-data";
 export type DefaultTimelineProps = {
   items: LifeItem[];
   renderMedia?: (item: LifeItem, isLeft: boolean) => React.ReactNode;
+  wide?: boolean;
 };
 
-export default function DefaultTimeline({ items, renderMedia }: DefaultTimelineProps) {
+export default function DefaultTimeline({ items, renderMedia, wide }: DefaultTimelineProps) {
   if (items.length === 0) {
     return (
       <div className="rounded-2xl border border-foreground/10 bg-foreground/[0.03] px-6 py-16 text-center">
@@ -20,7 +21,11 @@ export default function DefaultTimeline({ items, renderMedia }: DefaultTimelineP
   return (
     <div className="relative">
       {/* Center line */}
-      <div className="absolute left-4 top-0 bottom-0 w-px bg-foreground/10 md:left-1/2 md:-translate-x-1/2" />
+      <div
+        className={`absolute left-4 top-0 bottom-0 w-px bg-foreground/10 ${
+          wide ? "md:left-8" : "md:left-1/2 md:-translate-x-1/2"
+        }`}
+      />
 
       <div className="space-y-12">
         {items.map((item, idx) => {
@@ -31,12 +36,18 @@ export default function DefaultTimeline({ items, renderMedia }: DefaultTimelineP
           return (
             <div key={item.id} className="relative flex items-start md:items-center">
               {/* Dot */}
-              <div className="absolute left-4 top-6 z-10 h-3 w-3 -translate-x-1/2 rounded-full bg-foreground/40 ring-4 ring-background md:left-1/2" />
+              <div
+                className={`absolute left-4 top-6 z-10 h-3 w-3 -translate-x-1/2 rounded-full bg-foreground/40 ring-4 ring-background ${
+                  wide ? "md:left-8" : "md:left-1/2"
+                }`}
+              />
 
               {/* Content */}
               <div
-                className={`ml-10 w-full md:ml-0 md:w-1/2 ${
-                  isLeft ? "md:pr-12 md:text-right" : "md:ml-auto md:pl-12 md:text-left"
+                className={`ml-10 w-full ${
+                  wide
+                    ? "md:ml-auto md:w-[calc(100%-3.5rem)] md:pl-12 md:text-left"
+                    : `md:ml-0 md:w-1/2 ${isLeft ? "md:pr-12 md:text-right" : "md:ml-auto md:pl-12 md:text-left"}`
                 }`}
               >
                 <time className="block text-xs font-medium text-foreground/50">
@@ -46,7 +57,7 @@ export default function DefaultTimeline({ items, renderMedia }: DefaultTimelineP
                 <p className="mt-1 text-sm text-foreground/70">{item.desc}</p>
                 <div
                   className={`mt-4 overflow-hidden rounded-2xl bg-foreground/[0.03] ${
-                    isLeft ? "md:ml-auto" : ""
+                    !wide && isLeft ? "md:ml-auto" : ""
                   }`}
                 >
                   {renderMedia ? (

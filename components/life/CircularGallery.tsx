@@ -365,8 +365,8 @@ class Media {
       }
     }
     this.scale = this.screen.height / 1500;
-    this.plane.scale.y = (this.viewport.height * (900 * this.scale)) / this.screen.height;
-    this.plane.scale.x = (this.viewport.width * (700 * this.scale)) / this.screen.width;
+    this.plane.scale.y = (this.viewport.height * (1100 * this.scale)) / this.screen.height;
+    this.plane.scale.x = (this.viewport.width * (900 * this.scale)) / this.screen.width;
     this.program.uniforms.uPlaneSizes.value = [this.plane.scale.x, this.plane.scale.y];
     this.padding = 2;
     this.width = this.plane.scale.x + this.padding;
@@ -521,6 +521,7 @@ class AppInstance {
     this.onCheck();
   }
   onWheel(e: WheelEvent) {
+    e.preventDefault();
     const delta = e.deltaY || (e as unknown as { wheelDelta: number }).wheelDelta || 0;
     this.scroll.target += (delta > 0 ? this.scrollSpeed : -this.scrollSpeed) * 0.2;
     this.onCheckDebounce();
@@ -568,26 +569,26 @@ class AppInstance {
     this.boundOnTouchMove = this.onTouchMove.bind(this);
     this.boundOnTouchUp = this.onTouchUp.bind(this);
     window.addEventListener("resize", this.boundOnResize);
-    window.addEventListener("mousewheel", this.boundOnWheel as EventListener);
-    window.addEventListener("wheel", this.boundOnWheel as EventListener);
-    window.addEventListener("mousedown", this.boundOnTouchDown as EventListener);
-    window.addEventListener("mousemove", this.boundOnTouchMove as EventListener);
-    window.addEventListener("mouseup", this.boundOnTouchUp as EventListener);
-    window.addEventListener("touchstart", this.boundOnTouchDown as EventListener);
-    window.addEventListener("touchmove", this.boundOnTouchMove as EventListener);
-    window.addEventListener("touchend", this.boundOnTouchUp as EventListener);
+    this.container.addEventListener("mousewheel", this.boundOnWheel as EventListener, { passive: false });
+    this.container.addEventListener("wheel", this.boundOnWheel as EventListener, { passive: false });
+    this.container.addEventListener("mousedown", this.boundOnTouchDown as EventListener);
+    this.container.addEventListener("mousemove", this.boundOnTouchMove as EventListener);
+    this.container.addEventListener("mouseup", this.boundOnTouchUp as EventListener);
+    this.container.addEventListener("touchstart", this.boundOnTouchDown as EventListener);
+    this.container.addEventListener("touchmove", this.onTouchMove as EventListener);
+    this.container.addEventListener("touchend", this.boundOnTouchUp as EventListener);
   }
   destroy() {
     window.cancelAnimationFrame(this.raf);
     window.removeEventListener("resize", this.boundOnResize);
-    window.removeEventListener("mousewheel", this.boundOnWheel as EventListener);
-    window.removeEventListener("wheel", this.boundOnWheel as EventListener);
-    window.removeEventListener("mousedown", this.boundOnTouchDown as EventListener);
-    window.removeEventListener("mousemove", this.boundOnTouchMove as EventListener);
-    window.removeEventListener("mouseup", this.boundOnTouchUp as EventListener);
-    window.removeEventListener("touchstart", this.boundOnTouchDown as EventListener);
-    window.removeEventListener("touchmove", this.boundOnTouchMove as EventListener);
-    window.removeEventListener("touchend", this.boundOnTouchUp as EventListener);
+    this.container.removeEventListener("mousewheel", this.boundOnWheel as EventListener);
+    this.container.removeEventListener("wheel", this.boundOnWheel as EventListener);
+    this.container.removeEventListener("mousedown", this.boundOnTouchDown as EventListener);
+    this.container.removeEventListener("mousemove", this.boundOnTouchMove as EventListener);
+    this.container.removeEventListener("mouseup", this.boundOnTouchUp as EventListener);
+    this.container.removeEventListener("touchstart", this.boundOnTouchDown as EventListener);
+    this.container.removeEventListener("touchmove", this.onTouchMove as EventListener);
+    this.container.removeEventListener("touchend", this.boundOnTouchUp as EventListener);
     if (this.renderer && this.renderer.gl && this.renderer.gl.canvas.parentNode) {
       this.renderer.gl.canvas.parentNode.removeChild(this.renderer.gl.canvas);
     }

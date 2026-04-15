@@ -10,12 +10,13 @@ export type TravelTimelineProps = {
 
 export default function TravelTimeline({ items }: TravelTimelineProps) {
   return (
-    <DefaultTimeline
-      items={items}
-      renderMedia={(item) => {
+    <div className="relative left-1/2 w-[66.67vw] -translate-x-1/2">
+      <DefaultTimeline
+        items={items}
+        renderMedia={(item) => {
         const images = item.images && item.images.length > 0 ? item.images : [item.src];
         return (
-          <div className="relative aspect-[4/3] w-full">
+          <div className="relative aspect-[16/9] w-full">
             <Stack
               cards={images.map((src, idx) => (
                 <img
@@ -34,6 +35,7 @@ export default function TravelTimeline({ items }: TravelTimelineProps) {
           </div>
         );
       }}
-    />
+      />
+    </div>
   );
 }

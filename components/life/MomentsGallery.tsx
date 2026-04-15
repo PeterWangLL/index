@@ -19,7 +19,7 @@ export default function MomentsGallery({ items, years, defaultYear }: MomentsGal
   return (
     <div className="space-y-4">
       <YearTabs years={years} activeYear={activeYear} onChange={setActiveYear} />
-      <div className="h-[60vh] min-h-[400px] w-full rounded-2xl border border-foreground/10 bg-foreground/[0.02]">
+      <div className="relative left-1/2 h-[55vh] min-h-[420px] w-[66.67vw] -translate-x-1/2 rounded-2xl border border-foreground/10 bg-foreground/[0.02]">
         {galleryItems.length > 0 ? (
           <CircularGallery items={galleryItems} bend={2} textColor="#6A2C70" borderRadius={0.05} />
         ) : (
