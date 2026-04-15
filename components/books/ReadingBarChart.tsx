@@ -1,32 +1,61 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { readingTimeStats } from "@/lib/books-data";
 
 export default function ReadingBarChart() {
   const maxHours = Math.max(...readingTimeStats.map((d) => d.hours));
 
   return (
-    <div className="rounded-2xl bg-foreground/5 p-6 sm:p-8">
-      <h3 className="mb-6 text-lg font-semibold">阅读时长</h3>
-      <div className="flex h-48 items-end justify-between gap-2 sm:gap-4">
-        {readingTimeStats.map((item) => {
-          const heightPercent = (item.hours / maxHours) * 100;
+    <div className="flex h-full flex-col rounded-2xl bg-[#F5F0E8] p-6 sm:p-8">
+      <h3 className="mb-6 text-lg font-semibold text-[#2C2A26]">阅读时长</h3>
+      <div className="flex h-[180px] items-end justify-between gap-2 sm:gap-4">
+        {readingTimeStats.map((item, idx) => {
+          const heightPercent = Math.max((item.hours / maxHours) * 100, 4);
           return (
-            <div key={item.year} className="flex flex-1 flex-col items-center gap-2">
-              <div className="text-xs font-medium text-foreground/60 sm:text-sm">
-                {item.hours}h
+            <div key={item.year} className="flex h-full flex-1 flex-col items-center justify-end gap-2">
+              <div className="text-xs font-medium text-[#6B6560] sm:text-sm">
+                <motion.span
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.08 + 0.3, duration: 0.4 }}
+                >
+                  {item.hours}h
+                </motion.span>
                 {item.minutes > 0 && (
-                  <span className="block text-[10px] text-foreground/40 sm:inline sm:ml-0.5">
+                  <span className="block text-[10px] text-[#A9A094] sm:inline sm:ml-0.5">
                     {item.minutes}m
                   </span>
                 )}
               </div>
               <div
-                className="w-full max-w-[48px] rounded-t-lg bg-foreground/20 transition-all duration-500 hover:bg-foreground/30 hover:scale-y-105 origin-bottom"
+                className="w-full max-w-[48px]"
                 style={{ height: `${heightPercent}%` }}
-                title={`${item.year}年：${item.hours}小时${item.minutes}分钟`}
-              />
-              <div className="text-xs font-medium text-foreground/50">{item.year}</div>
+              >
+                <motion.div
+                  className="h-full w-full rounded-t-lg bg-[#C4B7A6] origin-bottom hover:bg-[#B0A290]"
+                  initial={{ scaleY: 0 }}
+                  whileInView={{ scaleY: 1 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    delay: idx * 0.08,
+                    duration: 0.8,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  whileHover={{ scale: 1.05 }}
+                  title={`${item.year}年：${item.hours}小时${item.minutes}分钟`}
+                />
+              </div>
+              <motion.div
+                className="text-xs font-medium text-[#8B8277]"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.08 + 0.4, duration: 0.4 }}
+              >
+                {item.year}
+              </motion.div>
             </div>
           );
         })}
