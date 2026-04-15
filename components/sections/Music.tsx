@@ -1,76 +1,128 @@
 "use client";
 
-import { useState } from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import ElectricBorder from "@/components/animations/ElectricBorder";
+import OrbitImages from "@/components/animations/OrbitImages";
+import { artist, albumCovers } from "@/lib/music-data";
 
-const tracks = [
-  {
-    period: "2025.04",
-    title: "爱错",
-    artist: "王力宏",
-    summary: "最近单曲循环最多的一首。副歌的情绪递进很抓人，像是在唱一种明知道会错却还是奋不顾身的状态。",
-    detail: "这首歌的旋律线条非常流畅，编曲上用了很多弦乐铺垫，到了副歌突然释放。最近加班回家路上经常听，有一种说不出的共鸣。",
-  },
-  {
-    period: "2025.02",
-    title: "天黑黑",
-    artist: "孙燕姿",
-    summary: "小时候听的是旋律，现在听的是开头那一句「我的小时候，吵闹任性的时候」。",
-    detail: "孙燕姿的歌好像总有一种魔力，隔几年再听，听懂的部分就会多一层。《天黑黑》现在对我来说，更像是一首关于「回家」的歌。",
-  },
-  {
-    period: "2024.11",
-    title: "沙漏",
-    artist: "陶喆",
-    summary: "一首相对冷门但很有味道的 R&B，节奏舒服，适合周末午后。",
-    detail: "陶喆后期的作品里，这首是我私心最爱的之一。没有太复杂的编曲，但吉他和人声的配合恰到好处，有一种岁月沉淀下来的松弛感。",
-  },
+const lyrics = [
+  "我怀念的是无话不说",
+  "我怀念的是一起做梦",
+  "我怀念的是争吵以后",
+  "还是想要爱你的冲动",
 ];
 
 export default function Music() {
-  const [expanded, setExpanded] = useState<number | null>(null);
-
   return (
-    <section id="music" className="py-24 px-6">
-      <div className="mx-auto max-w-4xl">
-        <div className="mb-12">
+    <section id="music" className="py-24 px-6 overflow-hidden">
+      <div className="mx-auto max-w-6xl">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-10 text-center"
+        >
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Music</h2>
-          <p className="mt-4 max-w-2xl text-foreground/70">
-            音乐是情绪的日记。这里记录某段时间里，反复播放的那几首歌。
+          <p className="mt-4 mx-auto max-w-2xl text-foreground/70">
+            听歌不算多，但会反复循环喜欢的几首。这里是一个冷门歌手的代表作小角落。
           </p>
-        </div>
+        </motion.div>
 
-        {/* Timeline */}
-        <div className="relative space-y-8 pl-8 before:absolute before:left-3 before:top-2 before:h-[calc(100%-16px)] before:w-px before:bg-foreground/20">
-          {tracks.map((track, idx) => (
-            <div key={idx} className="relative">
-              {/* dot */}
-              <div className="absolute -left-[21px] top-2 h-2 w-2 rounded-full bg-foreground/40" />
-
-              <div className="rounded-2xl border border-foreground/10 bg-foreground/5 p-5 transition-colors hover:border-foreground/20">
-                <div className="flex flex-wrap items-baseline justify-between gap-2">
-                  <h3 className="text-lg font-semibold">
-                    {track.title}
-                    <span className="ml-2 text-sm font-normal text-foreground/50">{track.artist}</span>
-                  </h3>
-                  <span className="text-xs text-foreground/40">{track.period}</span>
+        <div className="grid gap-10 lg:grid-cols-5 items-center">
+          {/* Left: Electric Border - Artist Card */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="flex justify-center lg:col-span-2"
+          >
+            <ElectricBorder
+              color={artist.color}
+              speed={1.2}
+              chaos={0.12}
+              borderRadius={24}
+              className="w-full max-w-[18rem] sm:max-w-[20rem]"
+            >
+              <div className="relative flex flex-col overflow-hidden rounded-3xl bg-foreground/[0.02]">
+                <div className="relative aspect-[3/4] w-full overflow-hidden">
+                  <Image
+                    src={artist.image}
+                    alt={artist.name}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 288px, 320px"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
                 </div>
-                <p className="mt-2 text-sm text-foreground/70 leading-relaxed">{track.summary}</p>
+                <div className="absolute inset-x-0 bottom-0 p-5 text-center">
+                  <p className="text-sm font-medium text-white/80 tracking-wide">代表作</p>
+                  <p className="mt-1 text-2xl font-bold text-white">{artist.track}</p>
+                  <p className="mt-1 text-base font-medium text-white/90">{artist.name}</p>
+                </div>
+              </div>
+            </ElectricBorder>
+          </motion.div>
 
-                {expanded === idx && (
-                  <p className="mt-3 text-sm text-foreground/60 leading-relaxed border-t border-foreground/10 pt-3">
-                    {track.detail}
-                  </p>
-                )}
-
-                <button
-                  onClick={() => setExpanded(expanded === idx ? null : idx)}
-                  className="mt-3 text-xs font-medium text-foreground/60 hover:text-foreground transition-colors"
-                >
-                  {expanded === idx ? "收起" : "展开更多"}
-                </button>
+          {/* Right: Lyrics quote + Orbit Images */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="relative w-full lg:col-span-3 lg:h-[500px]"
+          >
+            {/* Lyrics floating above orbit on large screens */}
+            <div className="relative z-10 mb-6 text-center lg:absolute lg:inset-x-0 lg:top-6 lg:mb-0">
+              <p
+                className="mb-3 text-xs font-semibold uppercase tracking-widest"
+                style={{ color: artist.color }}
+              >
+                代表作歌词
+              </p>
+              <div className="space-y-1">
+                {lyrics.map((line, idx) => (
+                  <motion.p
+                    key={idx}
+                    className="text-base font-medium text-foreground/80 sm:text-lg"
+                    initial={{ opacity: 0.25 }}
+                    animate={{ opacity: [0.25, 1, 0.25] }}
+                    transition={{
+                      duration: 3.2,
+                      repeat: Infinity,
+                      delay: idx * 0.8,
+                      ease: "easeInOut",
+                    }}
+                  >
+                    {line}
+                  </motion.p>
+                ))}
               </div>
             </div>
-          ))}
+
+            {/* Orbit */}
+            <div className="relative h-[280px] w-full sm:h-[340px] lg:absolute lg:inset-0 lg:h-auto">
+              <OrbitImages
+                images={albumCovers}
+                altPrefix="专辑封面"
+                shape="ellipse"
+                responsive
+                baseWidth={1200}
+                radiusX={520}
+                radiusY={140}
+                itemSize={130}
+                duration={26}
+                rotation={-6}
+                showPath
+                pathColor={`${artist.color}30`}
+                pathWidth={2}
+                easing="linear"
+              />
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
