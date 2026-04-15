@@ -60,7 +60,7 @@ export default function Life() {
                 >
                   {/* 所有照片统一使用 object-cover 按标准比例裁剪，避免留白 */}
                   <Image
-                    src={item.src}
+                    src={item.images?.[0] ?? item.src}
                     alt={item.title}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"

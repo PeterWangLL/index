@@ -1,10 +1,15 @@
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import {
   lifeCategories,
   getTimelineItems,
   getCategoryLabel,
+  getFitnessRecords,
 } from "@/lib/life-data";
+import DefaultTimeline from "@/components/life/DefaultTimeline";
+import FitnessHeatmap from "@/components/life/FitnessHeatmap";
+import ComparisonSlider from "@/components/life/ComparisonSlider";
+import MomentsGallery from "@/components/life/MomentsGallery";
+import TravelTimeline from "@/components/life/TravelTimeline";
 
 export function generateStaticParams() {
   return lifeCategories.map((c) => ({ category: c.key }));
@@ -20,6 +25,42 @@ export async function generateMetadata({
   return {
     title: `${label} | Life — Peter Wang`,
   };
+}
+
+function HikingComparison({ items }: { items: ReturnType<typeof getTimelineItems> }) {
+  return (
+    <div className="grid gap-8 sm:grid-cols-2">
+      {items.map((item) => (
+        <div key={item.id} className="space-y-3">
+          <div className="flex items-baseline justify-between">
+            <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
+            <time className="text-xs font-medium text-foreground/50">{item.date}</time>
+          </div>
+          <p className="text-sm text-foreground/70">{item.desc}</p>
+          <ComparisonSlider
+            leftImage={item.landscapeImage || item.src}
+            rightImage={item.bandImage || item.src}
+            leftLabel="风景"
+            rightLabel="运动记录"
+            className="aspect-[4/3] w-full"
+          />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function MomentsGalleryWrapper({ items }: { items: ReturnType<typeof getTimelineItems> }) {
+  const years = Array.from(new Set(items.map((i) => new Date(i.date).getFullYear()))).sort(
+    (a, b) => b - a
+  );
+  const defaultYear = years[0] ?? new Date().getFullYear();
+  return <MomentsGallery items={items} years={years} defaultYear={defaultYear} />;
+}
+
+function FitnessSection() {
+  const records = getFitnessRecords();
+  return <FitnessHeatmap records={records} />;
 }
 
 export default async function LifeCategoryPage({
@@ -63,7 +104,6 @@ export default async function LifeCategoryPage({
         <h1 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
           {label}
         </h1>
-
       </div>
 
       {/* Category switcher */}
@@ -83,70 +123,12 @@ export default async function LifeCategoryPage({
         ))}
       </div>
 
-      {/* Timeline */}
-      {items.length === 0 ? (
-        <div className="rounded-2xl border border-foreground/10 bg-foreground/[0.03] px-6 py-16 text-center">
-          <p className="text-foreground/60">该分类下暂时没有记录。</p>
-        </div>
-      ) : (
-        <div className="relative">
-          {/* Center line */}
-          <div className="absolute left-4 top-0 bottom-0 w-px bg-foreground/10 md:left-1/2 md:-translate-x-1/2" />
-
-          <div className="space-y-12">
-            {items.map((item, idx) => {
-              const isLeft = idx % 2 === 0;
-              // 横屏统一 4:3，竖屏统一 3:4，避免强行拉伸或留白
-              const aspectClass =
-                item.orientation === "portrait"
-                  ? "aspect-[3/4]"
-                  : "aspect-[4/3]";
-
-              return (
-                <div
-                  key={item.id}
-                  className="relative flex items-start md:items-center"
-                >
-                  {/* Dot */}
-                  <div className="absolute left-4 top-6 z-10 h-3 w-3 -translate-x-1/2 rounded-full bg-foreground/40 ring-4 ring-background md:left-1/2" />
-
-                  {/* Content */}
-                  <div
-                    className={`ml-10 w-full md:ml-0 md:w-1/2 ${
-                      isLeft
-                        ? "md:pr-12 md:text-right"
-                        : "md:ml-auto md:pl-12 md:text-left"
-                    }`}
-                  >
-                    <time className="block text-xs font-medium text-foreground/50">
-                      {item.date}
-                    </time>
-                    <h3 className="mt-1 text-lg font-semibold text-foreground">{item.title}</h3>
-                    <p className="mt-1 text-sm text-foreground/70">
-                      {item.desc}
-                    </p>
-                    <div
-                      className={`mt-4 overflow-hidden rounded-2xl bg-foreground/[0.03] ${
-                        isLeft ? "md:ml-auto" : ""
-                      }`}
-                    >
-                      <div className={`relative ${aspectClass}`}>
-                        <Image
-                          src={item.src}
-                          alt={item.title}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
+      {/* Category-specific content */}
+      {category === "fitness" && <FitnessSection />}
+      {category === "travel" && <TravelTimeline items={items} />}
+      {category === "hiking" && <HikingComparison items={items} />}
+      {category === "moments" && <MomentsGalleryWrapper items={items} />}
+      {(category === "photography" || category === "all") && <DefaultTimeline items={items} />}
 
       {/* Bottom back link */}
       <div className="mt-16 text-center">

@@ -18,10 +18,41 @@ export type LifeItem = {
   featured: boolean; // 是否在该分类的精选页展示
   bestOfBest?: boolean; // 是否在"精选"标签页展示（优中选优）
   layout?: "normal" | "wide"; // 精选网格布局，仅 featured / bestOfBest 有效
+  // 新增可选字段，用于分类差异化展示
+  images?: string[]; // travel: 一个 Stack 内的多张照片
+  landscapeImage?: string; // hiking: 风景照
+  bandImage?: string; // hiking: 运动手环记录截图
 };
+
+export type FitnessRecord = {
+  date: string; // YYYY-MM-DD
+  type: "strength" | "cardio" | "outdoor" | "rest";
+  duration: number; // 分钟
+  note?: string;
+};
+
+export const fitnessRecords: FitnessRecord[] = [
+  // 2026-03
+  { date: "2026-03-24", type: "strength", duration: 60, note: "胸+三头" },
+  { date: "2026-03-25", type: "cardio", duration: 45, note: "跑步机 5km" },
+  { date: "2026-03-27", type: "strength", duration: 70, note: "背+二头" },
+  { date: "2026-03-29", type: "outdoor", duration: 90, note: "户外骑行" },
+  { date: "2026-03-30", type: "strength", duration: 60, note: "腿部训练" },
+  { date: "2026-03-31", type: "cardio", duration: 40, note: "椭圆机" },
+  // 2026-04
+  { date: "2026-04-02", type: "strength", duration: 65, note: "肩+核心" },
+  { date: "2026-04-07", type: "cardio", duration: 50, note: "游泳 1km" },
+  { date: "2026-04-08", type: "strength", duration: 60, note: "胸+三头" },
+  { date: "2026-04-09", type: "strength", duration: 75, note: "背+二头" },
+  { date: "2026-04-10", type: "outdoor", duration: 80, note: "公园慢跑" },
+  { date: "2026-04-13", type: "strength", duration: 60, note: "腿部训练" },
+  { date: "2026-04-14", type: "cardio", duration: 45, note: "跑步机间歇" },
+  { date: "2026-04-15", type: "strength", duration: 70, note: "肩+核心" },
+];
 
 export const lifeItems: LifeItem[] = [
   // ==================== fitness ====================
+  // 精选网格保留少量代表性照片
   {
     id: "f-01",
     category: "fitness",
@@ -58,6 +89,8 @@ export const lifeItems: LifeItem[] = [
     featured: true,
     bestOfBest: true,
     layout: "normal",
+    landscapeImage: "/images/life/hiking/a-majestic-mountain-peak-behind-wildflowers-under-a-clear-sky-ho0_jE0q9T0.jpeg",
+    bandImage: "/images/life/fitness/a-skier-with-a-bag-on-a-snowy-slope-bY7uZyolzGk.jpeg",
   },
   {
     id: "h-02",
@@ -69,6 +102,8 @@ export const lifeItems: LifeItem[] = [
     orientation: "landscape",
     featured: true,
     layout: "normal",
+    landscapeImage: "/images/life/hiking/a-mountain-range-with-clouds-in-the-sky-cJgG4wbjkdQ.jpeg",
+    bandImage: "/images/life/fitness/two-surfers-wait-for-waves-near-a-rocky-coastline-MA0nBwOmuwQ.jpeg",
   },
   {
     id: "h-03",
@@ -80,6 +115,8 @@ export const lifeItems: LifeItem[] = [
     orientation: "portrait",
     featured: true,
     layout: "wide",
+    landscapeImage: "/images/life/hiking/a-rocky-river-flows-through-a-sunlit-forest-valley-jXdi_jWuXwA.jpeg",
+    bandImage: "/images/life/fitness/a-skier-with-a-bag-on-a-snowy-slope-bY7uZyolzGk.jpeg",
   },
   {
     id: "h-04",
@@ -91,6 +128,8 @@ export const lifeItems: LifeItem[] = [
     orientation: "landscape",
     featured: true,
     layout: "normal",
+    landscapeImage: "/images/life/hiking/glowing-tent-set-up-in-a-snowy-landscape-at-night-6uhTmirqHlA.jpeg",
+    bandImage: "/images/life/fitness/two-surfers-wait-for-waves-near-a-rocky-coastline-MA0nBwOmuwQ.jpeg",
   },
   {
     id: "h-05",
@@ -102,6 +141,8 @@ export const lifeItems: LifeItem[] = [
     orientation: "portrait",
     featured: true,
     layout: "normal",
+    landscapeImage: "/images/life/hiking/snow-capped-mountain-peak-illuminated-by-golden-sunset-light-7LgwmO6cDrU.jpeg",
+    bandImage: "/images/life/fitness/a-skier-with-a-bag-on-a-snowy-slope-bY7uZyolzGk.jpeg",
   },
   {
     id: "h-06",
@@ -112,6 +153,8 @@ export const lifeItems: LifeItem[] = [
     src: "/images/life/hiking/yellow-warning-sign-in-a-snowy-mountain-landscape-X6pHcOzJVRI.jpeg",
     orientation: "portrait",
     featured: false,
+    landscapeImage: "/images/life/hiking/yellow-warning-sign-in-a-snowy-mountain-landscape-X6pHcOzJVRI.jpeg",
+    bandImage: "/images/life/fitness/two-surfers-wait-for-waves-near-a-rocky-coastline-MA0nBwOmuwQ.jpeg",
   },
 
   // ==================== photography ====================
@@ -288,25 +331,20 @@ export const lifeItems: LifeItem[] = [
   {
     id: "t-01",
     category: "travel",
-    title: "巴拉格宗",
-    desc: "香格里拉的秘境，雪山与峡谷在这里相遇。",
+    title: "香格里拉秘境",
+    desc: "雪山、佛塔、峡谷与古树，香格里拉的每一帧都像秘境。",
     date: "2025-03-10",
     src: "/images/life/travel/巴拉格宗.jpg",
     orientation: "landscape",
     featured: true,
     bestOfBest: true,
     layout: "wide",
-  },
-  {
-    id: "t-02",
-    category: "travel",
-    title: "香巴拉佛塔",
-    desc: "一座佛塔静立在山巅，守望着千年的时光。",
-    date: "2025-03-11",
-    src: "/images/life/travel/香巴拉佛塔.jpg",
-    orientation: "portrait",
-    featured: true,
-    layout: "normal",
+    images: [
+      "/images/life/travel/巴拉格宗.jpg",
+      "/images/life/travel/香巴拉佛塔.jpg",
+      "/images/life/travel/回音壁.jpg",
+      "/images/life/travel/千年菩提.jpg",
+    ],
   },
   {
     id: "t-03",
@@ -318,6 +356,7 @@ export const lifeItems: LifeItem[] = [
     orientation: "landscape",
     featured: true,
     layout: "normal",
+    images: ["/images/life/travel/香格里拉站.jpg"],
   },
   {
     id: "t-04",
@@ -329,6 +368,7 @@ export const lifeItems: LifeItem[] = [
     orientation: "portrait",
     featured: true,
     layout: "normal",
+    images: ["/images/life/travel/a-tall-ship-sails-on-the-ocean-at-sunset-NJCEGWjzA38.jpeg"],
   },
   {
     id: "t-05",
@@ -340,26 +380,7 @@ export const lifeItems: LifeItem[] = [
     orientation: "portrait",
     featured: true,
     layout: "normal",
-  },
-  {
-    id: "t-06",
-    category: "travel",
-    title: "回音壁",
-    desc: "山谷里的风声回荡，像是大地的低语。",
-    date: "2025-03-13",
-    src: "/images/life/travel/回音壁.jpg",
-    orientation: "landscape",
-    featured: false,
-  },
-  {
-    id: "t-07",
-    category: "travel",
-    title: "千年菩提",
-    desc: "一棵古树见证了无数的日出日落与人来人往。",
-    date: "2025-03-14",
-    src: "/images/life/travel/千年菩提.jpg",
-    orientation: "portrait",
-    featured: false,
+    images: ["/images/life/travel/colorful-buildings-line-a-rocky-cove-with-clear-blue-water-YelA9YJAPq8.jpeg"],
   },
   {
     id: "t-08",
@@ -370,6 +391,7 @@ export const lifeItems: LifeItem[] = [
     src: "/images/life/travel/a-red-train-travels-through-a-snowy-mountain-landscape-jllQYsBvFnA.jpeg",
     orientation: "portrait",
     featured: false,
+    images: ["/images/life/travel/a-red-train-travels-through-a-snowy-mountain-landscape-jllQYsBvFnA.jpeg"],
   },
   {
     id: "t-09",
@@ -380,6 +402,7 @@ export const lifeItems: LifeItem[] = [
     src: "/images/life/travel/colorful-ferris-wheel-against-a-pale-sky-0j3TlmE8jFA.jpeg",
     orientation: "portrait",
     featured: false,
+    images: ["/images/life/travel/colorful-ferris-wheel-against-a-pale-sky-0j3TlmE8jFA.jpeg"],
   },
   {
     id: "t-10",
@@ -390,6 +413,7 @@ export const lifeItems: LifeItem[] = [
     src: "/images/life/travel/eiffel-tower-viewed-from-a-park-with-purple-grass-n8HXOc4O_IM.jpeg",
     orientation: "portrait",
     featured: false,
+    images: ["/images/life/travel/eiffel-tower-viewed-from-a-park-with-purple-grass-n8HXOc4O_IM.jpeg"],
   },
   {
     id: "t-11",
@@ -400,6 +424,7 @@ export const lifeItems: LifeItem[] = [
     src: "/images/life/travel/historic-storefronts-line-a-charming-small-town-street-iVINr8-ZFmY.jpeg",
     orientation: "landscape",
     featured: false,
+    images: ["/images/life/travel/historic-storefronts-line-a-charming-small-town-street-iVINr8-ZFmY.jpeg"],
   },
   {
     id: "t-12",
@@ -410,6 +435,7 @@ export const lifeItems: LifeItem[] = [
     src: "/images/life/travel/strait-of-hormuz-between-iran-and-oman-8koWngCqqzM.jpeg",
     orientation: "landscape",
     featured: false,
+    images: ["/images/life/travel/strait-of-hormuz-between-iran-and-oman-8koWngCqqzM.jpeg"],
   },
   {
     id: "t-13",
@@ -419,6 +445,75 @@ export const lifeItems: LifeItem[] = [
     date: "2023-11-20",
     src: "/images/life/travel/train-crossing-a-bridge-with-cathedral-in-background-at-sunset-WaxPv3S-EXM.jpeg",
     orientation: "landscape",
+    featured: false,
+    images: ["/images/life/travel/train-crossing-a-bridge-with-cathedral-in-background-at-sunset-WaxPv3S-EXM.jpeg"],
+  },
+
+  // ==================== moments ====================
+  {
+    id: "m-01",
+    category: "moments",
+    title: "火箭升空",
+    desc: "见证一束光撕裂夜空。",
+    date: "2024-09-20",
+    src: "/images/life/photography/rocket-launching-at-night-with-bright-flames-and-smoke--tT9l_dkakk.jpeg",
+    orientation: "landscape",
+    featured: true,
+    bestOfBest: true,
+    layout: "wide",
+  },
+  {
+    id: "m-02",
+    category: "moments",
+    title: "日落海浪",
+    desc: "橙红色的天空倒映在海面上。",
+    date: "2024-08-03",
+    src: "/images/life/photography/ocean-waves-at-sunset-with-warm-orange-sky-eSLJG0y5S4U.jpeg",
+    orientation: "portrait",
+    featured: true,
+    layout: "normal",
+  },
+  {
+    id: "m-03",
+    category: "moments",
+    title: "叶上蝴蝶",
+    desc: "翅膀上的纹路，是大自然写下的诗。",
+    date: "2024-05-02",
+    src: "/images/life/photography/a-butterfly-on-a-leaf-Kl3MvqEPJmY.jpeg",
+    orientation: "portrait",
+    featured: true,
+    bestOfBest: true,
+    layout: "normal",
+  },
+  {
+    id: "m-04",
+    category: "moments",
+    title: "绿桥繁花",
+    desc: "春日的桥与河，连空气都是粉色的。",
+    date: "2024-02-14",
+    src: "/images/life/photography/green-bridge-over-river-with-blooming-trees-in-foreground-BwQb8kPxl7w.jpeg",
+    orientation: "portrait",
+    featured: true,
+    layout: "normal",
+  },
+  {
+    id: "m-05",
+    category: "moments",
+    title: "五彩渔村",
+    desc: "地中海的蓝色海水边，彩色房屋像积木一样堆叠。",
+    date: "2024-05-25",
+    src: "/images/life/travel/colorful-buildings-line-a-rocky-cove-with-clear-blue-water-YelA9YJAPq8.jpeg",
+    orientation: "portrait",
+    featured: false,
+  },
+  {
+    id: "m-06",
+    category: "moments",
+    title: "日照金山",
+    desc: "日落前的最后一束光，点燃了雪山顶峰。",
+    date: "2023-11-03",
+    src: "/images/life/hiking/snow-capped-mountain-peak-illuminated-by-golden-sunset-light-7LgwmO6cDrU.jpeg",
+    orientation: "portrait",
     featured: false,
   },
 ];
@@ -443,4 +538,10 @@ export function getTimelineItems(category: string) {
 
 export function getCategoryLabel(key: string) {
   return lifeCategories.find((c) => c.key === key)?.label ?? key;
+}
+
+export function getFitnessRecords() {
+  return [...fitnessRecords].sort(
+    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+  );
 }
