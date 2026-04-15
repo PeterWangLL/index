@@ -23,7 +23,7 @@ export default function Games() {
     <section id="games" className="py-24 px-6">
       <div className="mx-auto max-w-6xl">
         <div className="mb-12">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Games</h2>
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Games</h2>
           <p className="mt-4 max-w-2xl text-foreground/70">
             炉石传说酒馆战棋、哈迪斯、文明6 — 再打一回合就睡。
           </p>
@@ -34,10 +34,10 @@ export default function Games() {
           {games.map((game, idx) => (
             <div
               key={idx}
-              className="group flex flex-col justify-between rounded-2xl border border-foreground/10 bg-foreground/5 p-6 transition-colors hover:border-foreground/20"
+              className="group flex flex-col justify-between rounded-2xl border border-foreground/10 bg-foreground/[0.03] p-6 transition-colors hover:border-[#F08A5D]/40"
             >
               <div>
-                <h3 className="text-lg font-semibold">{game.title}</h3>
+                <h3 className="text-lg font-semibold text-foreground">{game.title}</h3>
                 <p className="mt-3 text-sm text-foreground/70 leading-relaxed">
                   {game.desc}
                 </p>

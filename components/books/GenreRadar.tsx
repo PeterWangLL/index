@@ -22,8 +22,8 @@ export default function GenreRadar() {
   const polygonPoints = points.map((p) => `${p.x},${p.y}`).join(" ");
 
   return (
-    <div className="flex h-full min-h-[220px] flex-col rounded-2xl bg-[#F5F0E8] p-6 sm:p-8">
-      <h3 className="mb-2 text-lg font-semibold text-[#2C2A26]">阅读偏好</h3>
+    <div className="flex h-full min-h-[220px] flex-col rounded-2xl bg-foreground/[0.03] p-6 backdrop-blur-sm sm:p-8">
+      <h3 className="mb-2 text-lg font-semibold text-foreground">阅读偏好</h3>
       <div className="relative flex flex-1 items-center justify-center">
         <motion.svg
           viewBox="0 0 300 260"
@@ -35,8 +35,8 @@ export default function GenreRadar() {
         >
           <defs>
             <radialGradient id="radarFill" cx={cx} cy={cy} r={radius} gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stopColor="#C4B7A6" stopOpacity="0.55" />
-              <stop offset="100%" stopColor="#B0A290" stopOpacity="0.2" />
+              <stop offset="0%" stopColor="#F08A5D" stopOpacity="0.55" />
+              <stop offset="100%" stopColor="#F9ED69" stopOpacity="0.2" />
             </radialGradient>
             <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
               <feGaussianBlur stdDeviation="3" result="coloredBlur" />
@@ -57,7 +57,8 @@ export default function GenreRadar() {
                 cy={cy}
                 r={r}
                 fill="none"
-                stroke="#D9D2C6"
+                stroke="currentColor"
+                strokeOpacity={0.2}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
@@ -74,7 +75,8 @@ export default function GenreRadar() {
               y1={cy}
               x2={cx + radius * Math.cos(p.angle)}
               y2={cy + radius * Math.sin(p.angle)}
-              stroke="#D9D2C6"
+              stroke="currentColor"
+              strokeOpacity={0.2}
               initial={{ pathLength: 0 }}
               whileInView={{ pathLength: 1 }}
               viewport={{ once: true }}
@@ -86,7 +88,7 @@ export default function GenreRadar() {
           <motion.polygon
             points={polygonPoints}
             fill="url(#radarFill)"
-            stroke="#A89882"
+            stroke="#B83B5E"
             strokeWidth={2.5}
             strokeLinejoin="round"
             initial={{ pathLength: 0, opacity: 0 }}
@@ -102,8 +104,8 @@ export default function GenreRadar() {
               cx={p.x}
               cy={p.y}
               r={5}
-              fill="#A89882"
-              stroke="#F5F0E8"
+              fill="#6A2C70"
+              stroke="var(--background)"
               strokeWidth={2}
               filter="url(#glow)"
               initial={{ scale: 0, opacity: 0 }}
@@ -129,7 +131,7 @@ export default function GenreRadar() {
                 y={y}
                 textAnchor={textAnchor}
                 dominantBaseline="middle"
-                className="fill-[#5C5348] text-[12px] font-medium"
+                className="fill-foreground text-[12px] font-medium"
                 initial={{ opacity: 0, y: 8 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

@@ -3,7 +3,7 @@ export const artist = {
   name: "孙燕姿",
   track: "我怀念的",
   image: "/images/music/孙燕姿.jpg",
-  color: "#F59E0B",
+  color: "#B83B5E",
 };
 
 export const albumCovers = [

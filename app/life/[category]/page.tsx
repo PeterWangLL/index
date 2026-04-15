@@ -43,7 +43,7 @@ export default async function LifeCategoryPage({
       <div className="mb-6">
         <a
           href="/#life"
-          className="inline-flex items-center gap-1 text-sm text-foreground/60 hover:text-foreground transition-colors"
+          className="inline-flex items-center gap-1 text-sm text-foreground/60 hover:text-[#B83B5E] transition-colors"
         >
           <svg
             className="h-4 w-4"
@@ -60,7 +60,7 @@ export default async function LifeCategoryPage({
           </svg>
           返回 Life
         </a>
-        <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
+        <h1 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
           {label}
         </h1>
 
@@ -74,7 +74,7 @@ export default async function LifeCategoryPage({
             href={`/life/${cat.key}`}
             className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
               cat.key === category
-                ? "bg-foreground text-background"
+                ? "bg-[#B83B5E] text-white"
                 : "bg-foreground/5 text-foreground/80 hover:bg-foreground/10"
             }`}
           >
@@ -85,7 +85,7 @@ export default async function LifeCategoryPage({
 
       {/* Timeline */}
       {items.length === 0 ? (
-        <div className="rounded-2xl border border-foreground/10 bg-foreground/5 px-6 py-16 text-center">
+        <div className="rounded-2xl border border-foreground/10 bg-foreground/[0.03] px-6 py-16 text-center">
           <p className="text-foreground/60">该分类下暂时没有记录。</p>
         </div>
       ) : (
@@ -121,12 +121,12 @@ export default async function LifeCategoryPage({
                     <time className="block text-xs font-medium text-foreground/50">
                       {item.date}
                     </time>
-                    <h3 className="mt-1 text-lg font-semibold">{item.title}</h3>
+                    <h3 className="mt-1 text-lg font-semibold text-foreground">{item.title}</h3>
                     <p className="mt-1 text-sm text-foreground/70">
                       {item.desc}
                     </p>
                     <div
-                      className={`mt-4 overflow-hidden rounded-2xl bg-foreground/5 ${
+                      className={`mt-4 overflow-hidden rounded-2xl bg-foreground/[0.03] ${
                         isLeft ? "md:ml-auto" : ""
                       }`}
                     >

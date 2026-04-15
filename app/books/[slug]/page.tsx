@@ -32,11 +32,11 @@ export default async function BookPage({
     <main className="mx-auto max-w-3xl px-6 py-24">
       <a
         href="/#books"
-        className="text-sm text-foreground/60 hover:text-foreground transition-colors"
+        className="text-sm text-foreground/60 hover:text-[#B83B5E] transition-colors"
       >
         ← 返回 Books
       </a>
-      <h1 className="mt-6 text-3xl font-bold tracking-tight sm:text-4xl">
+      <h1 className="mt-6 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
         {book.title}
       </h1>
       <p className="mt-2 text-foreground/60">{book.author}</p>
@@ -50,7 +50,7 @@ export default async function BookPage({
           ))}
         </article>
       ) : (
-        <div className="mt-10 rounded-2xl border border-foreground/10 bg-foreground/5 px-6 py-12 text-center">
+        <div className="mt-10 rounded-2xl border border-foreground/10 bg-foreground/[0.03] px-6 py-12 text-center">
           <p className="text-foreground/60">这本书还没有写读书笔记。</p>
           <p className="mt-2 text-sm text-foreground/40">
             先去读一遍，再回来补上感悟吧。

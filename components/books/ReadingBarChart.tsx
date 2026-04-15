@@ -7,14 +7,14 @@ export default function ReadingBarChart() {
   const maxHours = Math.max(...readingTimeStats.map((d) => d.hours));
 
   return (
-    <div className="flex h-full flex-col rounded-2xl bg-[#F5F0E8] p-6 sm:p-8">
-      <h3 className="mb-6 text-lg font-semibold text-[#2C2A26]">阅读时长</h3>
+    <div className="flex h-full flex-col rounded-2xl bg-foreground/[0.03] p-6 backdrop-blur-sm sm:p-8">
+      <h3 className="mb-6 text-lg font-semibold text-foreground">阅读时长</h3>
       <div className="flex h-[180px] items-end justify-between gap-2 sm:gap-4">
         {readingTimeStats.map((item, idx) => {
           const heightPercent = Math.max((item.hours / maxHours) * 100, 4);
           return (
             <div key={item.year} className="flex h-full flex-1 flex-col items-center justify-end gap-2">
-              <div className="text-xs font-medium text-[#6B6560] sm:text-sm">
+              <div className="text-xs font-medium text-foreground/70 sm:text-sm">
                 <motion.span
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -24,7 +24,7 @@ export default function ReadingBarChart() {
                   {item.hours}h
                 </motion.span>
                 {item.minutes > 0 && (
-                  <span className="block text-[10px] text-[#A9A094] sm:inline sm:ml-0.5">
+                  <span className="block text-[10px] text-foreground/50 sm:inline sm:ml-0.5">
                     {item.minutes}m
                   </span>
                 )}
@@ -34,7 +34,7 @@ export default function ReadingBarChart() {
                 style={{ height: `${heightPercent}%` }}
               >
                 <motion.div
-                  className="h-full w-full rounded-t-lg bg-[#C4B7A6] origin-bottom hover:bg-[#B0A290]"
+                  className="h-full w-full rounded-t-lg bg-[#F08A5D] origin-bottom hover:bg-[#B83B5E]"
                   initial={{ scaleY: 0 }}
                   whileInView={{ scaleY: 1 }}
                   viewport={{ once: true }}
@@ -48,7 +48,7 @@ export default function ReadingBarChart() {
                 />
               </div>
               <motion.div
-                className="text-xs font-medium text-[#8B8277]"
+                className="text-xs font-medium text-foreground/70"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}

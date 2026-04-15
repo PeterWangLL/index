@@ -14,7 +14,7 @@ export default function Introduction() {
 
           {/* Text content */}
           <div className="space-y-6">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Introduction</h2>
+            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Introduction</h2>
             <div className="space-y-4 text-foreground/80 leading-relaxed">
               <p>
                 你好，我是 Peter，一名热爱前端技术的开发者。比起追逐最新的框架，我更在意代码是否优雅、用户体验是否流畅，以及一个产品从想法到落地的完整过程。
@@ -27,7 +27,7 @@ export default function Introduction() {
               {tags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full bg-foreground/5 px-4 py-1.5 text-sm font-medium text-foreground/80"
+                  className="rounded-full bg-[#F9ED69]/30 px-4 py-1.5 text-sm font-medium text-foreground/80"
                 >
                   {tag}
                 </span>

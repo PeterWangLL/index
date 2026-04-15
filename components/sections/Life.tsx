@@ -16,7 +16,7 @@ export default function Life() {
     <section id="life" className="py-24 px-6">
       <div className="mx-auto max-w-6xl">
         <div className="mb-8">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Life</h2>
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Life</h2>
           <p className="mt-4 max-w-2xl text-foreground/70">
             记录生活中的美好瞬间 — 健身、旅行、爬山、重要时刻，以及随手拍下的光影。
           </p>
@@ -30,7 +30,7 @@ export default function Life() {
               onClick={() => setActiveCategory(cat.key)}
               className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
                 activeCategory === cat.key
-                  ? "bg-foreground text-background"
+                  ? "bg-[#B83B5E] text-white"
                   : "bg-foreground/5 text-foreground/80 hover:bg-foreground/10"
               }`}
             >

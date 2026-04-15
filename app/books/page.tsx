@@ -8,13 +8,13 @@ const favoriteBooks = getFavoriteBooks();
 
 export default function BooksPage() {
   return (
-    <main className="min-h-screen bg-[#FDFBF7] px-6 py-16">
+    <main className="min-h-screen bg-background px-6 py-16">
       <div className="mx-auto max-w-6xl">
         {/* Header */}
         <div className="mb-8">
           <a
             href="/#books"
-            className="inline-flex items-center gap-1 text-sm text-[#8B8277] hover:text-[#5C5348] transition-colors"
+            className="inline-flex items-center gap-1 text-sm text-foreground/60 hover:text-[#B83B5E] transition-colors"
           >
             <svg
               className="h-4 w-4"
@@ -31,8 +31,8 @@ export default function BooksPage() {
             </svg>
             返回主页
           </a>
-          <h1 className="mt-4 text-3xl font-bold tracking-tight text-[#2C2A26] sm:text-4xl">Books</h1>
-          <p className="mt-2 text-[#6B6560]">
+          <h1 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Books</h1>
+          <p className="mt-2 text-foreground/70">
             微信读书重度用户。阅读是我理解世界和自我的方式。
           </p>
         </div>
@@ -40,9 +40,9 @@ export default function BooksPage() {
         {/* 核心数据 */}
         <div className="grid gap-4 sm:grid-cols-3">
           {generalStats.map((stat, idx) => (
-            <div key={idx} className="rounded-2xl bg-[#F5F0E8] p-6 text-center">
-              <div className="text-3xl font-bold text-[#4A443D]">{stat.value}</div>
-              <div className="mt-1 text-sm text-[#8B8277]">{stat.label}</div>
+            <div key={idx} className="rounded-2xl bg-[#F9ED69]/25 p-6 text-center">
+              <div className="text-3xl font-bold text-[#B83B5E]">{stat.value}</div>
+              <div className="mt-1 text-sm text-foreground/70">{stat.label}</div>
             </div>
           ))}
         </div>
@@ -60,12 +60,12 @@ export default function BooksPage() {
         {/* 全部喜欢的书 */}
         <div className="mt-12">
           <div className="mb-5 flex items-center justify-between">
-            <h2 className="text-xl font-semibold text-[#2C2A26]">喜欢的书</h2>
-            <span className="text-sm text-[#8B8277]">
+            <h2 className="text-xl font-semibold text-foreground">喜欢的书</h2>
+            <span className="text-sm text-foreground/60">
               按阅读时间从新到旧
             </span>
           </div>
-          <div className="grid grid-cols-3 gap-x-3 gap-y-6 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
+          <div className="grid grid-cols-4 gap-x-5 gap-y-8 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-8">
             {favoriteBooks.map((book) => (
               <BookCard key={book.slug} book={book} />
             ))}
@@ -76,7 +76,7 @@ export default function BooksPage() {
         <div className="mt-16 text-center">
           <a
             href="/#books"
-            className="inline-flex items-center gap-2 rounded-full bg-[#F5F0E8] px-5 py-2 text-sm font-medium text-[#5C5348] hover:bg-[#EBE4D8] transition-colors"
+            className="inline-flex items-center gap-2 rounded-full bg-[#F9ED69] px-5 py-2 text-sm font-medium text-foreground hover:bg-[#F9ED69]/80 transition-colors"
           >
             <svg
               className="h-4 w-4"

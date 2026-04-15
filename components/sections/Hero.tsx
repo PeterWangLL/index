@@ -7,17 +7,17 @@ export default function Hero() {
       className="relative flex min-h-screen flex-col items-center justify-center px-6 pt-20"
     >
       <div className="z-10 flex flex-col items-center text-center">
-        <h1 className="text-5xl font-bold tracking-tight sm:text-7xl md:text-8xl">
+        <h1 className="text-5xl font-bold tracking-tight text-foreground sm:text-7xl md:text-8xl">
           Peter Wang
         </h1>
         <p className="mt-6 max-w-lg text-lg text-foreground/70 sm:text-xl">
           在代码与生活的交界处，寻找自己的节奏。
         </p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-2 text-sm text-foreground/50">
-          <span className="rounded-full bg-foreground/5 px-3 py-1">#programming</span>
-          <span className="rounded-full bg-foreground/5 px-3 py-1">#gaming</span>
-          <span className="rounded-full bg-foreground/5 px-3 py-1">#music</span>
-          <span className="rounded-full bg-foreground/5 px-3 py-1">#hiking</span>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-2 text-sm text-foreground/60">
+          <span className="rounded-full bg-[#F9ED69]/30 px-3 py-1">#programming</span>
+          <span className="rounded-full bg-[#F9ED69]/30 px-3 py-1">#gaming</span>
+          <span className="rounded-full bg-[#F9ED69]/30 px-3 py-1">#music</span>
+          <span className="rounded-full bg-[#F9ED69]/30 px-3 py-1">#hiking</span>
         </div>
       </div>
 

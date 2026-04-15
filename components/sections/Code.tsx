@@ -26,7 +26,7 @@ export default function Code() {
     <section id="code" className="py-24 px-6">
       <div className="mx-auto max-w-6xl">
         <div className="mb-12">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Code</h2>
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Code</h2>
           <p className="mt-4 max-w-2xl text-foreground/70">
             记录技术成长过程中的思考、笔记与实践。
           </p>
@@ -37,10 +37,10 @@ export default function Code() {
           {articles.map((article, idx) => (
             <div
               key={idx}
-              className="group flex flex-col justify-between rounded-2xl border border-foreground/10 bg-foreground/5 p-6 transition-colors hover:border-foreground/20"
+              className="group flex flex-col justify-between rounded-2xl border border-foreground/10 bg-foreground/[0.03] p-6 transition-colors hover:border-[#F08A5D]/40"
             >
               <div>
-                <h3 className="text-lg font-semibold leading-snug group-hover:text-foreground/90 transition-colors">
+                <h3 className="text-lg font-semibold leading-snug text-foreground group-hover:text-[#B83B5E] transition-colors">
                   {article.title}
                 </h3>
                 <p className="mt-3 text-sm text-foreground/60 leading-relaxed">
@@ -52,7 +52,7 @@ export default function Code() {
                   {article.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-full bg-foreground/10 px-2.5 py-0.5 text-xs font-medium text-foreground/70"
+                      className="rounded-full bg-[#F9ED69]/30 px-2.5 py-0.5 text-xs font-medium text-foreground/70"
                     >
                       {tag}
                     </span>

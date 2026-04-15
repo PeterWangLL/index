@@ -26,11 +26,11 @@ const featuredBooks = featuredSlugs
 
 export default function Books() {
   return (
-    <section id="books" className="bg-[#FDFBF7] py-24 px-6">
+    <section id="books" className="bg-background py-24 px-6">
       <div className="mx-auto max-w-6xl">
         <FadeIn className="mb-10">
-          <h2 className="text-3xl font-bold tracking-tight text-[#2C2A26] sm:text-4xl">Books</h2>
-          <p className="mt-4 max-w-2xl text-[#6B6560]">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Books</h2>
+          <p className="mt-4 max-w-2xl text-foreground/70">
             微信读书重度用户。阅读是我理解世界和自我的方式。
           </p>
         </FadeIn>
@@ -40,13 +40,13 @@ export default function Books() {
           {generalStats.map((stat, idx) => (
             <FadeIn key={idx} delay={idx * 0.1}>
               <motion.div
-                className="rounded-2xl bg-[#F5F0E8] p-6 text-center"
+                className="rounded-2xl bg-[#F9ED69]/25 p-6 text-center"
                 whileHover={{ y: -4, transition: { duration: 0.25 } }}
               >
-                <div className="text-4xl font-bold text-[#4A443D]">
+                <div className="text-4xl font-bold text-[#B83B5E]">
                   <CountUp target={stat.value} duration={1.8} />
                 </div>
-                <div className="mt-1 text-sm text-[#8B8277]">{stat.label}</div>
+                <div className="mt-1 text-sm text-foreground/70">{stat.label}</div>
               </motion.div>
             </FadeIn>
           ))}
@@ -66,8 +66,8 @@ export default function Books() {
         <div className="mt-10">
           <FadeIn>
             <div className="mb-4 flex items-center justify-between">
-              <h3 className="text-lg font-semibold text-[#2C2A26]">喜欢的书</h3>
-              <span className="text-sm text-[#8B8277]">8 本精选</span>
+              <h3 className="text-lg font-semibold text-foreground">喜欢的书</h3>
+              <span className="text-sm text-foreground/60">8 本精选</span>
             </div>
           </FadeIn>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-8">
@@ -83,7 +83,7 @@ export default function Books() {
         <FadeIn delay={0.2} className="mt-6 flex items-center justify-end">
           <Link
             href="/books"
-            className="inline-flex items-center gap-1 rounded-full bg-[#F5F0E8] px-4 py-1.5 text-sm font-medium text-[#5C5348] hover:bg-[#EBE4D8] transition-colors"
+            className="inline-flex items-center gap-1 rounded-full bg-[#F9ED69] px-4 py-1.5 text-sm font-medium text-foreground hover:bg-[#F9ED69]/80 transition-colors"
           >
             查看全部书单
             <svg
