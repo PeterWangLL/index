@@ -39,7 +39,6 @@ export default function SpaceMap() {
     if (!chart) return;
 
     chart.on("finished", updateMarker);
-    // initial position after a short delay to ensure render
     const t = setTimeout(updateMarker, 50);
     return () => {
       chart.off("finished", updateMarker);
@@ -106,7 +105,7 @@ export default function SpaceMap() {
 
   return (
     <div className="flex flex-col rounded-2xl border border-foreground/10 bg-white/60 p-6 shadow-sm transition hover:shadow-md">
-      <h3 className="text-2xl font-bold tracking-tight text-foreground">Space</h3>
+      <h3 className="text-2xl font-bold tracking-tight text-foreground">Footprint</h3>
       <p className="mt-2 text-sm text-foreground/70">
         这是我的旅行足迹。目前定居在南京，中国。
       </p>

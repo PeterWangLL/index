@@ -21,8 +21,8 @@ export default function Life() {
           </p>
         </div>
 
-        {/* Tabs: 精选 + Viz icon */}
-        <div className="mb-8 flex flex-wrap gap-2">
+        {/* Tabs: 精选 + 足迹 + 查看全部 */}
+        <div className="mb-8 flex flex-wrap items-center gap-2">
           <button
             onClick={() => setActiveTab("featured")}
             className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
@@ -35,28 +35,24 @@ export default function Life() {
           </button>
           <button
             onClick={() => setActiveTab("viz")}
-            className={`rounded-full px-3 py-1.5 text-sm font-medium transition-colors ${
+            className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
               activeTab === "viz"
                 ? "bg-[#B83B5E] text-white"
                 : "bg-foreground/5 text-foreground/80 hover:bg-foreground/10"
             }`}
-            aria-label="Space & Time"
-            title="Space & Time"
           >
-            <svg
-              className="h-5 w-5"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
+            足迹
           </button>
+
+          <a
+            href="/life/all"
+            className="inline-flex items-center gap-1 rounded-full bg-foreground/5 px-4 py-1.5 text-sm font-medium text-foreground/80 hover:bg-foreground/10 transition-colors"
+          >
+            查看全部
+            <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+            </svg>
+          </a>
         </div>
 
         {activeTab === "featured" && (
@@ -108,19 +104,6 @@ export default function Life() {
             <TimeChart />
           </div>
         )}
-
-        {/* 查看全部入口 */}
-        <div className="mt-8 flex items-center justify-end">
-          <a
-            href="/life/all"
-            className="inline-flex items-center gap-1 rounded-full bg-foreground/5 px-4 py-1.5 text-sm font-medium text-foreground/80 hover:bg-foreground/10 transition-colors"
-          >
-            查看全部
-            <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
-            </svg>
-          </a>
-        </div>
       </div>
     </section>
   );
