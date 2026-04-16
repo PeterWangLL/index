@@ -5,7 +5,6 @@ import {
   getCategoryLabel,
   getFitnessRecords,
 } from "@/lib/life-data";
-import DefaultTimeline from "@/components/life/DefaultTimeline";
 import FitnessHeatmap from "@/components/life/FitnessHeatmap";
 import ComparisonSlider from "@/components/life/ComparisonSlider";
 import MomentsGallery from "@/components/life/MomentsGallery";
@@ -36,7 +35,6 @@ function HikingComparison({ items }: { items: ReturnType<typeof getTimelineItems
             <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
             <time className="text-xs font-medium text-foreground/50">{item.date}</time>
           </div>
-          <p className="text-sm text-foreground/70">{item.desc}</p>
           <ComparisonSlider
             leftImage={item.landscapeImage || item.src}
             rightImage={item.bandImage || item.src}
@@ -128,7 +126,6 @@ export default async function LifeCategoryPage({
       {category === "travel" && <TravelTimeline items={items} />}
       {category === "hiking" && <HikingComparison items={items} />}
       {category === "moments" && <MomentsGalleryWrapper items={items} />}
-      {(category === "photography" || category === "all") && <DefaultTimeline items={items} />}
 
       {/* Bottom back link */}
       <div className="mt-16 text-center">

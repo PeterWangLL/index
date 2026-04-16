@@ -2,14 +2,58 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { getFeaturedItems } from "@/lib/life-data";
+import { getFeaturedItems, lifeCategories, type LifeItem } from "@/lib/life-data";
 import SpaceMap from "./SpaceMap";
 import TimeChart from "./TimeChart";
+
+function FeaturedCard({
+  item,
+  className = "",
+  innerClassName = "",
+}: {
+  item: LifeItem;
+  className?: string;
+  innerClassName?: string;
+}) {
+  const isWide = item.layout === "wide";
+  const isPortrait = item.orientation === "portrait";
+  const aspectClass = isWide
+    ? "aspect-[16/9]"
+    : isPortrait
+    ? "aspect-[3/4]"
+    : "aspect-[4/3]";
+
+  return (
+    <div
+      className={`group relative overflow-hidden rounded-2xl bg-foreground/5 ${aspectClass} ${className}`}
+    >
+      <div className={`relative h-full w-full ${innerClassName}`}>
+        <Image
+          src={item.images?.[0] ?? item.src}
+          alt={item.title}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          sizes={
+            isWide
+              ? "(max-width: 768px) 100vw, 66vw"
+              : "(max-width: 768px) 100vw, 33vw"
+          }
+        />
+      </div>
+      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent px-4 pb-3 pt-8">
+        <h3 className="font-semibold text-white drop-shadow">{item.title}</h3>
+      </div>
+    </div>
+  );
+}
 
 export default function Life() {
   const [activeTab, setActiveTab] = useState<"featured" | "viz">("featured");
 
-  const filteredItems = getFeaturedItems("all");
+  const items = getFeaturedItems("all");
+  const row1 = items.slice(0, 2);   // 泰山, 黄山
+  const row2 = items.slice(2, 4);   // 云杉坪, 转经筒
+  const row3 = items.slice(4, 7);   // 东方明珠, 松赞干布寺, 香巴拉佛塔
 
   return (
     <section id="life" className="py-24 px-6">
@@ -45,7 +89,7 @@ export default function Life() {
           </button>
 
           <a
-            href="/life/all"
+            href={`/life/${lifeCategories[0]?.key}`}
             className="inline-flex items-center gap-1 rounded-full bg-foreground/5 px-4 py-1.5 text-sm font-medium text-foreground/80 hover:bg-foreground/10 transition-colors"
           >
             查看全部
@@ -57,42 +101,52 @@ export default function Life() {
 
         {activeTab === "featured" && (
           <>
-            {filteredItems.length === 0 ? (
+            {items.length === 0 ? (
               <div className="rounded-2xl border border-foreground/10 bg-foreground/5 px-6 py-16 text-center">
                 <p className="text-foreground/60">该分类下暂时没有精选内容。</p>
               </div>
             ) : (
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {filteredItems.map((item) => (
-                  <div
-                    key={item.id}
-                    className={`group relative overflow-hidden rounded-2xl bg-foreground/5 ${
-                      item.layout === "wide" ? "sm:col-span-2 lg:col-span-2" : ""
-                    }`}
-                  >
-                    <div
-                      className={`relative ${
-                        item.layout === "wide" ? "aspect-[16/9]" : "aspect-[4/3]"
-                      }`}
-                    >
-                      <Image
-                        src={item.images?.[0] ?? item.src}
-                        alt={item.title}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        sizes={
-                          item.layout === "wide"
-                            ? "(max-width: 768px) 100vw, 66vw"
-                            : "(max-width: 768px) 100vw, 33vw"
-                        }
-                      />
-                    </div>
-                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-5">
-                      <h3 className="font-semibold text-white">{item.title}</h3>
-                      <p className="mt-1 text-sm text-white/90">{item.desc}</p>
+              <div className="space-y-4">
+                {/* Row 1: 泰山 (1/3) + 黄山 (2/3) — 等高，泰山定高 */}
+                <div className="flex gap-4">
+                  <FeaturedCard item={row1[0]} className="flex-1" />
+                  <div className="group relative flex-[2] overflow-hidden rounded-2xl bg-foreground/5">
+                    <Image
+                      src={row1[1].images?.[0] ?? row1[1].src}
+                      alt={row1[1].title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 66vw"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent px-4 pb-3 pt-8">
+                      <h3 className="font-semibold text-white drop-shadow">{row1[1].title}</h3>
                     </div>
                   </div>
-                ))}
+                </div>
+
+                {/* Row 2: 云杉坪 (2/3) + 转经筒 (1/3) — 等高，转经筒定高 */}
+                <div className="flex gap-4">
+                  <div className="group relative flex-[2] overflow-hidden rounded-2xl bg-foreground/5">
+                    <Image
+                      src={row2[0].images?.[0] ?? row2[0].src}
+                      alt={row2[0].title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 66vw"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent px-4 pb-3 pt-8">
+                      <h3 className="font-semibold text-white drop-shadow">{row2[0].title}</h3>
+                    </div>
+                  </div>
+                  <FeaturedCard item={row2[1]} className="flex-1" />
+                </div>
+
+                {/* Row 3: 东方明珠 + 松赞干布寺 + 香巴拉佛塔 (各 1/3) */}
+                <div className="grid gap-4 grid-cols-3">
+                  {row3.map((item) => (
+                    <FeaturedCard key={item.id} item={item} />
+                  ))}
+                </div>
               </div>
             )}
           </>

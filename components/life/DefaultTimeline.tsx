@@ -54,7 +54,6 @@ export default function DefaultTimeline({ items, renderMedia, wide }: DefaultTim
                   {item.date}
                 </time>
                 <h3 className="mt-1 text-lg font-semibold text-foreground">{item.title}</h3>
-                <p className="mt-1 text-sm text-foreground/70">{item.desc}</p>
                 <div
                   className={`mt-4 overflow-hidden rounded-2xl bg-foreground/[0.03] ${
                     !wide && isLeft ? "md:ml-auto" : ""
