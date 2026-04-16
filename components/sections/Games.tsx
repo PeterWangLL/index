@@ -1,22 +1,8 @@
 "use client";
 
-const games = [
-  {
-    title: "炉石传说：酒馆战棋",
-    desc: "从 6000 分跌跌撞撞爬上 8000，偏爱机械和鱼人阵容。",
-    detail: " favorite 英雄：米尔豪斯、托奇",
-  },
-  {
-    title: "Hades",
-    desc: "一款让我心甘情愿死上百次的 Roguelike，每一把武器都有独特的爽感。",
-    detail: "通关次数：32 次 |  favorite 武器：盾4",
-  },
-  {
-    title: "文明6",
-    desc: `刚入坑 50 小时，还在「神级」难度门前徘徊。每次都说再来一回合，然后天就亮了。`,
-    detail: " favorite 领袖：秦始皇 | 最大成就：飞天胜利一次",
-  },
-];
+import Link from "next/link";
+import { gameItems } from "@/lib/game-data";
+import ChromaGrid from "@/components/game/ChromaGrid";
 
 export default function Games() {
   return (
@@ -25,26 +11,33 @@ export default function Games() {
         <div className="mb-12">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Games</h2>
           <p className="mt-4 max-w-2xl text-foreground/70">
-            炉石传说酒馆战棋、哈迪斯、文明6 — 再打一回合就睡。
+            一些打发时间的快乐来源。
           </p>
         </div>
 
-        {/* Games cards */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {games.map((game, idx) => (
-            <div
-              key={idx}
-              className="group flex flex-col justify-between rounded-2xl border border-foreground/10 bg-foreground/[0.03] p-6 transition-colors hover:border-[#F08A5D]/40"
+        <ChromaGrid items={gameItems} radius={280} />
+
+        {/* View all */}
+        <div className="mt-10 flex items-center justify-end">
+          <Link
+            href="/game"
+            className="inline-flex items-center gap-1 rounded-full bg-foreground/5 px-4 py-1.5 text-sm font-medium text-foreground/80 hover:bg-foreground/10 transition-colors"
+          >
+            查看全部
+            <svg
+              className="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              viewBox="0 0 24 24"
             >
-              <div>
-                <h3 className="text-lg font-semibold text-foreground">{game.title}</h3>
-                <p className="mt-3 text-sm text-foreground/70 leading-relaxed">
-                  {game.desc}
-                </p>
-              </div>
-              <p className="mt-6 text-xs text-foreground/50">{game.detail}</p>
-            </div>
-          ))}
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
+              />
+            </svg>
+          </Link>
         </div>
       </div>
     </section>
