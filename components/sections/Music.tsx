@@ -55,7 +55,7 @@ export default function Music() {
         >
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Music</h2>
           <p className="mt-4 mx-auto max-w-2xl text-foreground/70">
-            听歌不算多，但会反复循环喜欢的几首。这里是一个冷门歌手的代表作小角落。
+            Stefanie Sun. On repeat.
           </p>
         </motion.div>
 

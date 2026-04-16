@@ -17,7 +17,7 @@ export default function Life() {
         <div className="mb-8">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Life</h2>
           <p className="mt-4 max-w-2xl text-foreground/70">
-            记录生活中的美好瞬间 — 健身、旅行、爬山、重要时刻，以及随手拍下的光影。
+            Where I&apos;ve been. How I spend my time.
           </p>
         </div>
 

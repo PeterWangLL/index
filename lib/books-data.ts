@@ -25,12 +25,14 @@ export const generalStats = [
 ];
 
 export const genreStats = [
-  { label: "文学", count: 18 },
-  { label: "科幻", count: 8 },
-  { label: "悬疑", count: 6 },
-  { label: "历史", count: 5 },
-  { label: "散文", count: 3 },
-  { label: "社科", count: 1 },
+  { label: "影视原著", count: 602 },
+  { label: "社会小说", count: 189 },
+  { label: "文学", count: 288 },
+  { label: "科幻小说", count: 228 },
+  { label: "玄幻小说", count: 137 },
+  { label: "悬疑推理", count: 135 },
+  { label: "历史", count: 132 },
+  { label: "年代小说", count: 125 },
 ];
 
 const availableCovers = new Set([

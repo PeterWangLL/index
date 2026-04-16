@@ -31,7 +31,7 @@ export default function Books() {
         <FadeIn className="mb-10">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Books</h2>
           <p className="mt-4 max-w-2xl text-foreground/70">
-            微信读书重度用户。阅读是我理解世界和自我的方式。
+            WeRead stats and favorites.
           </p>
         </FadeIn>
 

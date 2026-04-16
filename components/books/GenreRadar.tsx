@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { genreStats } from "@/lib/books-data";
 
@@ -21,8 +22,15 @@ export default function GenreRadar() {
 
   const polygonPoints = points.map((p) => `${p.x},${p.y}`).join(" ");
 
+  const [tooltip, setTooltip] = useState<{
+    label: string;
+    count: number;
+    x: number;
+    y: number;
+  } | null>(null);
+
   return (
-    <div className="flex h-full min-h-[220px] flex-col rounded-2xl bg-foreground/[0.03] p-6 backdrop-blur-sm sm:p-8">
+    <div className="relative flex h-full min-h-[220px] flex-col rounded-2xl bg-foreground/[0.03] p-6 backdrop-blur-sm sm:p-8">
       <h3 className="mb-2 text-lg font-semibold text-foreground">阅读偏好</h3>
       <div className="relative flex flex-1 items-center justify-center">
         <motion.svg
@@ -108,10 +116,13 @@ export default function GenreRadar() {
               stroke="var(--background)"
               strokeWidth={2}
               filter="url(#glow)"
+              className="cursor-pointer"
               initial={{ scale: 0, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.6 + i * 0.06, duration: 0.4, ease: "backOut" }}
+              onMouseEnter={() => setTooltip({ label: p.label, count: p.count, x: p.x, y: p.y })}
+              onMouseLeave={() => setTooltip(null)}
             />
           ))}
 
@@ -142,6 +153,20 @@ export default function GenreRadar() {
             );
           })}
         </motion.svg>
+
+        {/* Tooltip */}
+        {tooltip && (
+          <div
+            className="pointer-events-none absolute z-20 rounded-lg border border-foreground/10 bg-white/95 px-3 py-2 text-xs font-medium text-foreground shadow-lg"
+            style={{
+              left: `calc(50% + ${((tooltip.x - cx) / 300) * 100}% - 2rem)`,
+              top: `calc(50% + ${((tooltip.y - cy) / 260) * 100}% - 2.5rem)`,
+            }}
+          >
+            <div className="text-foreground/70">{tooltip.label}</div>
+            <div className="text-sm font-semibold text-[#B83B5E]">{tooltip.count}h</div>
+          </div>
+        )}
       </div>
     </div>
   );

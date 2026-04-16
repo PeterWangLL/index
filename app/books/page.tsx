@@ -32,9 +32,6 @@ export default function BooksPage() {
             返回主页
           </a>
           <h1 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Books</h1>
-          <p className="mt-2 text-foreground/70">
-            微信读书重度用户。阅读是我理解世界和自我的方式。
-          </p>
         </div>
 
         {/* 核心数据 */}
