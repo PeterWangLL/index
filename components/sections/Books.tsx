@@ -40,7 +40,7 @@ export default function Books() {
           {generalStats.map((stat, idx) => (
             <FadeIn key={idx} delay={idx * 0.1}>
               <motion.div
-                className="rounded-2xl bg-[#F9ED69]/25 p-6 text-center"
+                className="rounded-2xl border border-foreground/10 bg-white/60 p-6 text-center shadow-sm"
                 whileHover={{ y: -4, transition: { duration: 0.25 } }}
               >
                 <div className="text-4xl font-bold text-[#B83B5E]">
@@ -83,7 +83,7 @@ export default function Books() {
         <FadeIn delay={0.2} className="mt-6 flex items-center justify-end">
           <Link
             href="/books"
-            className="inline-flex items-center gap-1 rounded-full bg-[#F9ED69] px-4 py-1.5 text-sm font-medium text-foreground hover:bg-[#F9ED69]/80 transition-colors"
+            className="inline-flex items-center gap-1 rounded-full bg-foreground/5 px-4 py-1.5 text-sm font-medium text-foreground/80 hover:bg-foreground/10 transition-colors"
           >
             查看全部书单
             <svg

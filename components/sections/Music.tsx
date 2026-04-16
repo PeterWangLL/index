@@ -6,11 +6,40 @@ import ElectricBorder from "@/components/animations/ElectricBorder";
 import OrbitImages from "@/components/animations/OrbitImages";
 import { artist, albumCovers } from "@/lib/music-data";
 
-const lyrics = [
-  "我怀念的是无话不说",
-  "我怀念的是一起做梦",
-  "我怀念的是争吵以后",
-  "还是想要爱你的冲动",
+const notes = [
+  {
+    title: "天黑黑",
+    rotate: -2,
+    tape: "#B83B5E25",
+    lines: [
+      "我爱上 让我奋不顾身的一个人",
+      "我以为 这就是我所追求的世界",
+      "然而横冲直撞 被误解被骗",
+      "是否成人的世界背后 总有残缺",
+    ],
+  },
+  {
+    title: "遇见",
+    rotate: 1.5,
+    tape: "#F08A5D35",
+    lines: [
+      "我遇见谁 会有怎样的对白",
+      "我等的人 他在多远的未来",
+      "我听见风来自地铁和人海",
+      "我排着队 拿着爱的号码牌",
+    ],
+  },
+  {
+    title: "我怀念的",
+    rotate: -1,
+    tape: "#4CAF5030",
+    lines: [
+      "我怀念的是无话不说",
+      "我怀念的是一起做梦",
+      "我怀念的是争吵以后",
+      "还是想要爱你的冲动",
+    ],
+  },
 ];
 
 export default function Music() {
@@ -73,38 +102,37 @@ export default function Music() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="relative w-full lg:col-span-3 lg:h-[500px]"
+            className="relative w-full lg:col-span-3 lg:h-[420px]"
           >
             {/* Lyrics floating above orbit on large screens */}
-            <div className="relative z-10 mb-6 text-center lg:absolute lg:inset-x-0 lg:top-6 lg:mb-0">
-              <p
-                className="mb-3 text-xs font-semibold uppercase tracking-widest"
-                style={{ color: artist.color }}
-              >
-                代表作歌词
-              </p>
-              <div className="space-y-1">
-                {lyrics.map((line, idx) => (
-                  <motion.p
-                    key={idx}
-                    className="text-base font-medium text-foreground/80 sm:text-lg"
-                    initial={{ opacity: 0.25 }}
-                    animate={{ opacity: [0.25, 1, 0.25] }}
-                    transition={{
-                      duration: 3.2,
-                      repeat: Infinity,
-                      delay: idx * 0.8,
-                      ease: "easeInOut",
-                    }}
-                  >
-                    {line}
-                  </motion.p>
-                ))}
-              </div>
+            <div className="relative z-10 mb-8 flex flex-nowrap items-start justify-center gap-3 sm:gap-4 lg:absolute lg:inset-x-0 lg:top-4 lg:mb-0">
+              {notes.map((note) => (
+                <div
+                  key={note.title}
+                  className="relative inline-block w-auto min-w-max rounded-xl border border-[#E8E0D0] bg-[#FFFDF0] px-5 py-4 shadow-md sm:px-7 sm:py-5 lg:px-8 lg:py-6"
+                  style={{ transform: `rotate(${note.rotate}deg)` }}
+                >
+                  {/* Tape strip */}
+                  <div
+                    className="absolute -top-3 left-1/2 h-6 w-20 -translate-x-1/2 rounded-sm opacity-80 sm:w-24"
+                    style={{ backgroundColor: note.tape }}
+                  />
+                  <div className="space-y-1.5 text-center">
+                    {note.lines.map((line, idx) => (
+                      <p
+                        key={idx}
+                        className="whitespace-nowrap text-sm font-medium text-foreground/80 sm:text-base"
+                      >
+                        {line}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
 
             {/* Orbit */}
-            <div className="relative h-[280px] w-full sm:h-[340px] lg:absolute lg:inset-0 lg:h-auto">
+            <div className="relative h-[260px] w-full sm:h-[300px] lg:absolute lg:left-0 lg:right-0 lg:top-[40px] lg:h-[260px]">
               <OrbitImages
                 images={albumCovers}
                 altPrefix="专辑封面"
@@ -112,8 +140,8 @@ export default function Music() {
                 responsive
                 baseWidth={1200}
                 radiusX={520}
-                radiusY={140}
-                itemSize={130}
+                radiusY={100}
+                itemSize={120}
                 duration={26}
                 rotation={-6}
                 showPath

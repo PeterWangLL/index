@@ -14,7 +14,7 @@ export default function BooksPage() {
         <div className="mb-8">
           <a
             href="/#books"
-            className="inline-flex items-center gap-1 text-sm text-foreground/60 hover:text-[#B83B5E] transition-colors"
+            className="inline-flex items-center gap-1 rounded-full bg-foreground/5 px-4 py-1.5 text-sm font-medium text-foreground/80 hover:bg-foreground/10 transition-colors"
           >
             <svg
               className="h-4 w-4"
@@ -40,7 +40,7 @@ export default function BooksPage() {
         {/* 核心数据 */}
         <div className="grid gap-4 sm:grid-cols-3">
           {generalStats.map((stat, idx) => (
-            <div key={idx} className="rounded-2xl bg-[#F9ED69]/25 p-6 text-center">
+            <div key={idx} className="rounded-2xl border border-foreground/10 bg-white/60 p-6 text-center shadow-sm">
               <div className="text-3xl font-bold text-[#B83B5E]">{stat.value}</div>
               <div className="mt-1 text-sm text-foreground/70">{stat.label}</div>
             </div>
@@ -76,7 +76,7 @@ export default function BooksPage() {
         <div className="mt-16 text-center">
           <a
             href="/#books"
-            className="inline-flex items-center gap-2 rounded-full bg-[#F9ED69] px-5 py-2 text-sm font-medium text-foreground hover:bg-[#F9ED69]/80 transition-colors"
+            className="inline-flex items-center gap-2 rounded-full bg-foreground/5 px-5 py-2 text-sm font-medium text-foreground/80 hover:bg-foreground/10 transition-colors"
           >
             <svg
               className="h-4 w-4"
