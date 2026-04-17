@@ -218,6 +218,9 @@ class Media {
     const texture = new Texture(this.gl, {
       generateMipmaps: true,
     });
+    (texture as any).wrapS = 0x812F;
+    (texture as any).wrapT = 0x812F;
+    (texture as any).needsUpdate = true;
     this.program = new Program(this.gl, {
       depthTest: false,
       depthWrite: false,
@@ -255,10 +258,10 @@ class Media {
             min((uPlaneSizes.x / uPlaneSizes.y) / (uImageSizes.x / uImageSizes.y), 1.0),
             min((uPlaneSizes.y / uPlaneSizes.x) / (uImageSizes.y / uImageSizes.x), 1.0)
           );
-          vec2 uv = vec2(
+          vec2 uv = clamp(vec2(
             vUv.x * ratio.x + (1.0 - ratio.x) * 0.5,
             vUv.y * ratio.y + (1.0 - ratio.y) * 0.5
-          );
+          ), vec2(0.0), vec2(1.0));
           vec4 color = texture2D(tMap, uv);
           
           float d = roundedBoxSDF(vUv - 0.5, vec2(0.5 - uBorderRadius), uBorderRadius);

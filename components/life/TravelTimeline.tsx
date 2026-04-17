@@ -18,7 +18,7 @@ export default function TravelTimeline({ items }: TravelTimelineProps) {
         return (
           <div className="relative aspect-[16/9] w-full">
             <Stack
-              cards={images.map((src, idx) => (
+              cards={images.slice().reverse().map((src, idx) => (
                 <img
                   key={idx}
                   src={src}
@@ -27,9 +27,7 @@ export default function TravelTimeline({ items }: TravelTimelineProps) {
                   draggable={false}
                 />
               ))}
-              autoplay={images.length > 1}
-              autoplayDelay={3500}
-              pauseOnHover
+              autoplay={false}
               className="h-full w-full"
             />
           </div>

@@ -131,9 +131,17 @@ function buildItems(pool: ImageItem[], seg: number): ItemDef[] {
     }
   }
 
-  // Fisher-Yates shuffle 彻底打乱
+  // 确定性 Fisher-Yates shuffle（固定种子，避免 SSR/CSR hydration mismatch）
+  const seededRandom = (() => {
+    let seed = 42;
+    return () => {
+      seed = (seed * 9301 + 49297) % 233280;
+      return seed / 233280;
+    };
+  })();
+
   for (let i = imagePool.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
+    const j = Math.floor(seededRandom() * (i + 1));
     [imagePool[i], imagePool[j]] = [imagePool[j], imagePool[i]];
   }
 

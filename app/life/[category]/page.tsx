@@ -51,11 +51,7 @@ function HikingComparison({ items }: { items: ReturnType<typeof getTimelineItems
 }
 
 function MomentsGalleryWrapper({ items }: { items: ReturnType<typeof getTimelineItems> }) {
-  const years = Array.from(new Set(items.map((i) => new Date(i.date).getFullYear()))).sort(
-    (a, b) => b - a
-  );
-  const defaultYear = years[0] ?? new Date().getFullYear();
-  return <MomentsGallery items={items} years={years} defaultYear={defaultYear} />;
+  return <MomentsGallery items={items} />;
 }
 
 function FitnessSection() {

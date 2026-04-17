@@ -51,7 +51,7 @@ export default function DefaultTimeline({ items, renderMedia, wide }: DefaultTim
                 }`}
               >
                 <time className="block text-xs font-medium text-foreground/50">
-                  {item.date}
+                  {item.date.slice(0, 7).replace("-", "年")}月
                 </time>
                 <h3 className="mt-1 text-lg font-semibold text-foreground">{item.title}</h3>
                 <div
