@@ -7,7 +7,6 @@ import {
   arsenalImages,
 } from "@/lib/life-data";
 import FitnessHeatmap from "@/components/life/FitnessHeatmap";
-import ComparisonSlider from "@/components/life/ComparisonSlider";
 import MomentsGallery from "@/components/life/MomentsGallery";
 import TravelTimeline from "@/components/life/TravelTimeline";
 import DomeGallery from "@/components/life/DomeGallery";
@@ -26,28 +25,6 @@ export async function generateMetadata({
   return {
     title: `${label} | Life — Peter Wang`,
   };
-}
-
-function HikingComparison({ items }: { items: ReturnType<typeof getTimelineItems> }) {
-  return (
-    <div className="grid gap-8 grid-cols-1">
-      {items.map((item) => (
-        <div key={item.id} className="space-y-3">
-          <div className="flex items-baseline justify-between">
-            <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
-            <time className="text-xs font-medium text-foreground/50">{item.date}</time>
-          </div>
-          <ComparisonSlider
-            leftImage={item.landscapeImage || item.src}
-            rightImage={item.bandImage || item.src}
-            leftLabel="风景"
-            rightLabel="运动记录"
-            className="aspect-[4/3] w-full"
-          />
-        </div>
-      ))}
-    </div>
-  );
 }
 
 function MomentsGalleryWrapper({ items }: { items: ReturnType<typeof getTimelineItems> }) {
@@ -131,11 +108,6 @@ export default async function LifeCategoryPage({
         </div>
       )}
       {category === "travel" && <TravelTimeline items={items} />}
-      {category === "hiking" && (
-        <div className="relative left-1/2 w-[66.67vw] -translate-x-1/2">
-          <HikingComparison items={items} />
-        </div>
-      )}
       {category === "moments" && <MomentsGalleryWrapper items={items} />}
 
       {/* Bottom back link */}
