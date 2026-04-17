@@ -1,4 +1,5 @@
 export const lifeCategories = [
+  { key: "arsenal", label: "阿森纳" },
   { key: "fitness", label: "健身" },
   { key: "travel", label: "旅行" },
   { key: "hiking", label: "爬山" },
@@ -25,27 +26,26 @@ export type LifeItem = {
 export type FitnessRecord = {
   date: string; // YYYY-MM-DD
   type: "strength" | "cardio" | "outdoor" | "rest";
-  duration: number; // 分钟
-  note?: string;
 };
 
 export const fitnessRecords: FitnessRecord[] = [
   // 2026-03
-  { date: "2026-03-24", type: "strength", duration: 60, note: "胸+三头" },
-  { date: "2026-03-25", type: "cardio", duration: 45, note: "跑步机 5km" },
-  { date: "2026-03-27", type: "strength", duration: 70, note: "背+二头" },
-  { date: "2026-03-29", type: "outdoor", duration: 90, note: "户外骑行" },
-  { date: "2026-03-30", type: "strength", duration: 60, note: "腿部训练" },
-  { date: "2026-03-31", type: "cardio", duration: 40, note: "椭圆机" },
+  { date: "2026-03-24", type: "strength" },
+  { date: "2026-03-25", type: "cardio" },
+  { date: "2026-03-27", type: "strength" },
+  { date: "2026-03-29", type: "outdoor" },
+  { date: "2026-03-30", type: "strength" },
+  { date: "2026-03-31", type: "cardio" },
   // 2026-04
-  { date: "2026-04-02", type: "strength", duration: 65, note: "肩+核心" },
-  { date: "2026-04-07", type: "cardio", duration: 50, note: "游泳 1km" },
-  { date: "2026-04-08", type: "strength", duration: 60, note: "胸+三头" },
-  { date: "2026-04-09", type: "strength", duration: 75, note: "背+二头" },
-  { date: "2026-04-10", type: "outdoor", duration: 80, note: "公园慢跑" },
-  { date: "2026-04-13", type: "strength", duration: 60, note: "腿部训练" },
-  { date: "2026-04-14", type: "cardio", duration: 45, note: "跑步机间歇" },
-  { date: "2026-04-15", type: "strength", duration: 70, note: "肩+核心" },
+  { date: "2026-04-02", type: "strength" },
+  { date: "2026-04-07", type: "cardio" },
+  { date: "2026-04-08", type: "strength" },
+  { date: "2026-04-09", type: "strength" },
+  { date: "2026-04-10", type: "outdoor" },
+  { date: "2026-04-13", type: "strength" },
+  { date: "2026-04-14", type: "cardio" },
+  { date: "2026-04-15", type: "strength" },
+  { date: "2026-04-16", type: "cardio" },
 ];
 
 export const lifeItems: LifeItem[] = [
@@ -621,3 +621,46 @@ export function getFitnessRecords() {
     (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
   );
 }
+
+export const arsenalImages: string[] = [
+  "/images/life/arsenal/arsenal_1.jpg",
+  "/images/life/arsenal/arsenal_2.jpg",
+  "/images/life/arsenal/arsenal_3.jpg",
+  "/images/life/arsenal/arsenal_4.jpg",
+  "/images/life/arsenal/arsenal_5.jpg",
+  "/images/life/arsenal/arsenal_6.jpg",
+  "/images/life/arsenal/arsenal_7.jpg",
+  "/images/life/arsenal/arsenal_8.jpg",
+  "/images/life/arsenal/arsenal_9.jpg",
+  "/images/life/arsenal/arsenal_10.jpg",
+  "/images/life/arsenal/arsenal_11.jpg",
+  "/images/life/arsenal/arsenal_12.jpg",
+  "/images/life/arsenal/arsenal_13.jpg",
+  "/images/life/arsenal/arsenal_14.jpg",
+  "/images/life/arsenal/arsenal_15.jpg",
+  "/images/life/arsenal/arsenal_16.jpg",
+  "/images/life/arsenal/arsenal_17.jpg",
+  "/images/life/arsenal/arsenal_18.jpg",
+  "/images/life/arsenal/arsenal_19.jpg",
+  "/images/life/arsenal/arsenal_20.jpg",
+  "/images/life/arsenal/arsenal_21.jpg",
+  "/images/life/arsenal/arsenal_22.jpg",
+  "/images/life/arsenal/arsenal_23.jpg",
+  "/images/life/arsenal/arsenal_24.jpg",
+  "/images/life/arsenal/arsenal_25.jpg",
+  "/images/life/arsenal/arsenal_26.jpg",
+  "/images/life/arsenal/arsenal_27.jpg",
+  "/images/life/arsenal/arsenal_28.jpg",
+  "/images/life/arsenal/arsenal_29.jpg",
+  "/images/life/arsenal/arsenal_30.jpg",
+  "/images/life/arsenal/arsenal_31.jpg",
+  "/images/life/arsenal/arsenal_32.jpg",
+  "/images/life/arsenal/arsenal_33.jpg",
+  "/images/life/arsenal/arsenal_34.jpg",
+  "/images/life/arsenal/arsenal_35.jpg",
+  "/images/life/arsenal/arsenal_36.jpg",
+  "/images/life/arsenal/arsenal_37.jpg",
+  "/images/life/arsenal/arsenal_38.jpg",
+  "/images/life/arsenal/arsenal_39.jpg",
+  "/images/life/arsenal/arsenal_40.jpg",
+];

@@ -4,11 +4,13 @@ import {
   getTimelineItems,
   getCategoryLabel,
   getFitnessRecords,
+  arsenalImages,
 } from "@/lib/life-data";
 import FitnessHeatmap from "@/components/life/FitnessHeatmap";
 import ComparisonSlider from "@/components/life/ComparisonSlider";
 import MomentsGallery from "@/components/life/MomentsGallery";
 import TravelTimeline from "@/components/life/TravelTimeline";
+import DomeGallery from "@/components/life/DomeGallery";
 
 export function generateStaticParams() {
   return lifeCategories.map((c) => ({ category: c.key }));
@@ -28,7 +30,7 @@ export async function generateMetadata({
 
 function HikingComparison({ items }: { items: ReturnType<typeof getTimelineItems> }) {
   return (
-    <div className="grid gap-8 sm:grid-cols-2">
+    <div className="grid gap-8 grid-cols-1">
       {items.map((item) => (
         <div key={item.id} className="space-y-3">
           <div className="flex items-baseline justify-between">
@@ -77,7 +79,7 @@ export default async function LifeCategoryPage({
   const otherCategories = lifeCategories;
 
   return (
-    <main className="mx-auto max-w-4xl px-6 py-16">
+    <main className="mx-auto max-w-6xl px-6 py-16">
       {/* Header */}
       <div className="mb-6">
         <a
@@ -122,9 +124,22 @@ export default async function LifeCategoryPage({
       </div>
 
       {/* Category-specific content */}
-      {category === "fitness" && <FitnessSection />}
+      {category === "arsenal" && (
+        <div className="relative left-1/2 aspect-[16/9] w-[66.67vw] -translate-x-1/2 overflow-hidden rounded-2xl bg-[#060010]">
+          <DomeGallery images={arsenalImages} fit={0.9} fitBasis="width" grayscale={false} />
+        </div>
+      )}
+      {category === "fitness" && (
+        <div className="relative left-1/2 w-[66.67vw] -translate-x-1/2">
+          <FitnessSection />
+        </div>
+      )}
       {category === "travel" && <TravelTimeline items={items} />}
-      {category === "hiking" && <HikingComparison items={items} />}
+      {category === "hiking" && (
+        <div className="relative left-1/2 w-[66.67vw] -translate-x-1/2">
+          <HikingComparison items={items} />
+        </div>
+      )}
       {category === "moments" && <MomentsGalleryWrapper items={items} />}
 
       {/* Bottom back link */}

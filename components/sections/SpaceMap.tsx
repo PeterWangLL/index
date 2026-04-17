@@ -28,9 +28,13 @@ export default function SpaceMap() {
   const updateMarker = useCallback(() => {
     const chart = (chartRef.current as any)?.getEchartsInstance?.();
     if (!chart) return;
-    const pos = chart.convertToPixel({ geoIndex: 0 }, [118.8, 32.06]);
-    if (pos && Array.isArray(pos)) {
-      setMarkerPos({ x: pos[0], y: pos[1] });
+    try {
+      const pos = chart.convertToPixel({ geoIndex: 0 }, [118.8, 32.06]);
+      if (pos && Array.isArray(pos)) {
+        setMarkerPos({ x: pos[0], y: pos[1] });
+      }
+    } catch {
+      // geo 组件尚未就绪，忽略本次更新
     }
   }, []);
 

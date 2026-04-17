@@ -102,13 +102,13 @@ export default function FitnessHeatmap({ records }: FitnessHeatmapProps) {
       <div
         className="h-3.5 w-3.5 rounded-sm"
         style={{ backgroundColor: color }}
-        title={record ? `${key} ${TYPE_LABELS[record.type]} ${record.duration}min` : key}
+        title={record ? `${key} ${TYPE_LABELS[record.type]}` : key}
       />
     );
   };
 
   return (
-    <div className="mx-auto w-full max-w-6xl space-y-6">
+    <div className="mx-auto w-full space-y-6">
       {/* Year selector */}
       <div className="flex flex-wrap items-center gap-3">
         <div className="flex gap-2">

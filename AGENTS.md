@@ -8,7 +8,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 # Life 板块约定
 
 - 所有生活照片数据统一维护在 `lib/life-data.ts` 中。
-- `lifeCategories` 不再包含 `"all"`（精选）与 `"photography"`（随拍），仅保留健身、旅行、爬山、时刻四个分类。
+- `lifeCategories` 不再包含 `"all"`（精选）与 `"photography"`（随拍）。当前保留：阿森纳、健身、旅行、爬山、时刻。
 - 首页 `components/sections/Life.tsx` 的 Bento 网格展示 `bestOfBest` 优中选优的照片，这些数据维护在 `lib/life-data.ts` 中，统一使用 `category: "featured"`。
 - 每个分类的查看全部页面为 `app/life/[category]/page.tsx`，采用时间轴布局，支持顶部分类切换。
 - 照片展示统一使用 `object-cover` 裁剪填充固定画框：
