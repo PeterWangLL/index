@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import CircularGallery from "./CircularGallery";
+import { getAssetPath } from "@/lib/utils";
 import type { LifeItem } from "@/lib/life-data";
 
 const ARCHIVE_YEAR = 2025;
@@ -36,7 +37,7 @@ export default function MomentsGallery({ items }: MomentsGalleryProps) {
 
   const [activeTab, setActiveTab] = useState(tabs[0]?.key ?? "2025~");
   const activeItems = tabs.find((t) => t.key === activeTab)?.items ?? [];
-  const galleryItems = activeItems.map((i) => ({ image: i.src, text: i.title }));
+  const galleryItems = activeItems.map((i) => ({ image: getAssetPath(i.src), text: i.title }));
 
   return (
     <div className="space-y-4">

@@ -90,7 +90,7 @@ export default function Life() {
           </button>
 
           <a
-            href={`/life/${lifeCategories[0]?.key}`}
+            href={`/index/life/${lifeCategories[0]?.key}`}
             className="inline-flex items-center gap-1 rounded-full bg-foreground/5 px-4 py-1.5 text-sm font-medium text-foreground/80 hover:bg-foreground/10 transition-colors"
           >
             查看全部

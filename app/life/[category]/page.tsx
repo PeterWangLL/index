@@ -6,6 +6,7 @@ import {
   getFitnessRecords,
   arsenalImages,
 } from "@/lib/life-data";
+import { getAssetPath } from "@/lib/utils";
 import FitnessHeatmap from "@/components/life/FitnessHeatmap";
 import MomentsGallery from "@/components/life/MomentsGallery";
 import TravelTimeline from "@/components/life/TravelTimeline";
@@ -99,7 +100,7 @@ export default async function LifeCategoryPage({
       {/* Category-specific content */}
       {category === "arsenal" && (
         <div className="relative left-1/2 aspect-[16/9] w-[66.67vw] -translate-x-1/2 overflow-hidden rounded-2xl bg-[#060010]">
-          <DomeGallery images={arsenalImages} fit={0.9} fitBasis="width" grayscale={false} />
+          <DomeGallery images={arsenalImages.map(getAssetPath)} fit={0.9} fitBasis="width" grayscale={false} />
         </div>
       )}
       {category === "fitness" && (
