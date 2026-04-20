@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import type { Book } from "@/lib/books-data";
+import { getAssetPath } from "@/lib/utils";
 import TiltedCard from "@/components/animations/TiltedCard";
 
 export default function BookCard({ book }: { book: Book }) {
@@ -10,7 +11,7 @@ export default function BookCard({ book }: { book: Book }) {
       <div className="relative aspect-[2/3] w-full overflow-hidden rounded-xl">
         {book.cover ? (
           <TiltedCard
-            imageSrc={book.cover}
+            imageSrc={getAssetPath(book.cover)}
             altText={book.title}
             containerHeight="100%"
             containerWidth="100%"

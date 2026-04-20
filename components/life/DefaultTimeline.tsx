@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { getAssetPath } from "@/lib/utils";
 import type { LifeItem } from "@/lib/life-data";
 
 export type DefaultTimelineProps = {
@@ -64,7 +65,7 @@ export default function DefaultTimeline({ items, renderMedia, wide }: DefaultTim
                   ) : (
                     <div className={`relative ${aspectClass}`}>
                       <Image
-                        src={item.src}
+                        src={getAssetPath(item.src)}
                         alt={item.title}
                         fill
                         className="object-cover"

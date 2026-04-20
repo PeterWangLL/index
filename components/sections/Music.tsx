@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import ElectricBorder from "@/components/animations/ElectricBorder";
 import OrbitImages from "@/components/animations/OrbitImages";
 import { artist, albumCovers } from "@/lib/music-data";
+import { getAssetPath } from "@/lib/utils";
 
 const notes = [
   {
@@ -78,7 +79,7 @@ export default function Music() {
               <div className="relative flex flex-col overflow-hidden rounded-3xl bg-foreground/[0.02]">
                 <div className="relative aspect-[3/4] w-full overflow-hidden">
                   <Image
-                    src={artist.image}
+                    src={getAssetPath(artist.image)}
                     alt={artist.name}
                     fill
                     className="object-cover"
@@ -134,7 +135,7 @@ export default function Music() {
             {/* Orbit */}
             <div className="relative h-[260px] w-full sm:h-[300px] lg:absolute lg:left-0 lg:right-0 lg:top-[40px] lg:h-[260px]">
               <OrbitImages
-                images={albumCovers}
+                images={albumCovers.map(getAssetPath)}
                 altPrefix="专辑封面"
                 shape="ellipse"
                 responsive

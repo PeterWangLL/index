@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { getAssetPath } from "@/lib/utils";
 import "./ChromaGrid.css";
 
 export type ChromaGridItem = {
@@ -104,7 +105,7 @@ export default function ChromaGrid({
                     item.aspectClass || "aspect-[4/3]"
                   }`}
                 >
-                  <img src={item.image} alt={item.title} loading="lazy" />
+                  <img src={getAssetPath(item.image)} alt={item.title} loading="lazy" />
                 </div>
                 <footer className="chroma-info">
                   <h3 className="name text-base font-semibold">

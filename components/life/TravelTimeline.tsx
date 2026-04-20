@@ -2,6 +2,7 @@
 
 import DefaultTimeline from "./DefaultTimeline";
 import Stack from "./Stack";
+import { getAssetPath } from "@/lib/utils";
 import type { LifeItem } from "@/lib/life-data";
 
 export type TravelTimelineProps = {
@@ -14,7 +15,7 @@ export default function TravelTimeline({ items }: TravelTimelineProps) {
       <DefaultTimeline
         items={items}
         renderMedia={(item) => {
-        const images = item.images && item.images.length > 0 ? item.images : [item.src];
+        const images = (item.images && item.images.length > 0 ? item.images : [item.src]).map(getAssetPath);
         return (
           <div className="relative aspect-[16/9] w-full">
             <Stack

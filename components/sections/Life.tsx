@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { getFeaturedItems, lifeCategories, type LifeItem } from "@/lib/life-data";
+import { getAssetPath } from "@/lib/utils";
 import SpaceMap from "./SpaceMap";
 import TimeChart from "./TimeChart";
 
@@ -29,7 +30,7 @@ function FeaturedCard({
     >
       <div className={`relative h-full w-full ${innerClassName}`}>
         <Image
-          src={item.images?.[0] ?? item.src}
+          src={getAssetPath(item.images?.[0] ?? item.src)}
           alt={item.title}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -112,7 +113,7 @@ export default function Life() {
                   <FeaturedCard item={row1[0]} className="flex-1" />
                   <div className="group relative flex-[2] overflow-hidden rounded-2xl bg-foreground/5">
                     <Image
-                      src={row1[1].images?.[0] ?? row1[1].src}
+                      src={getAssetPath(row1[1].images?.[0] ?? row1[1].src)}
                       alt={row1[1].title}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -128,7 +129,7 @@ export default function Life() {
                 <div className="flex gap-4">
                   <div className="group relative flex-[2] overflow-hidden rounded-2xl bg-foreground/5">
                     <Image
-                      src={row2[0].images?.[0] ?? row2[0].src}
+                      src={getAssetPath(row2[0].images?.[0] ?? row2[0].src)}
                       alt={row2[0].title}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
