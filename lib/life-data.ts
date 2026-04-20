@@ -45,6 +45,9 @@ export const fitnessRecords: FitnessRecord[] = [
   { date: "2026-04-14", type: "cardio" },
   { date: "2026-04-15", type: "strength" },
   { date: "2026-04-16", type: "cardio" },
+  { date: "2026-04-17", type: "cardio" },
+  { date: "2026-04-18", type: "strength" },
+  { date: "2026-04-19", type: "cardio" },
 ];
 
 export const lifeItems: LifeItem[] = [

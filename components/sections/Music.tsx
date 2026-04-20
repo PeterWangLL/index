@@ -109,7 +109,7 @@ export default function Music() {
               {notes.map((note) => (
                 <div
                   key={note.title}
-                  className="relative inline-block w-auto min-w-max rounded-xl border border-[#E8E0D0] bg-[#FFFDF0] px-5 py-4 shadow-md sm:px-7 sm:py-5 lg:px-8 lg:py-6"
+                  className="relative inline-block w-auto min-w-max rounded-xl border border-[#E8E0D0] bg-[#FFFDF0] px-5 py-4 shadow-md dark:border-[#6A2C7040] dark:bg-[#2D1B33] sm:px-7 sm:py-5 lg:px-8 lg:py-6"
                   style={{ transform: `rotate(${note.rotate}deg)` }}
                 >
                   {/* Tape strip */}

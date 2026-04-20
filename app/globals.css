@@ -1,8 +1,15 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
 :root {
   --background: #FFFDF5;
   --foreground: #6A2C70;
+}
+
+.dark {
+  --background: #1E1124;
+  --foreground: #FFFDF5;
 }
 
 @theme inline {
@@ -15,4 +22,10 @@
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
 }

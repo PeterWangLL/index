@@ -1,8 +1,8 @@
 import Navigation from "@/components/sections/Navigation";
 import Hero from "@/components/sections/Hero";
-import Introduction from "@/components/sections/Introduction";
+// import Introduction from "@/components/sections/Introduction";
 import Life from "@/components/sections/Life";
-import Code from "@/components/sections/Code";
+// import Code from "@/components/sections/Code";
 import Music from "@/components/sections/Music";
 import Books from "@/components/sections/Books";
 import Games from "@/components/sections/Games";
@@ -14,9 +14,9 @@ export default function Home() {
       <Navigation />
       <main className="flex-1">
         <Hero />
-        <Introduction />
+        {/* <Introduction /> */}
         <Life />
-        <Code />
+        {/* <Code /> */}
         <Music />
         <Books />
         <Games />

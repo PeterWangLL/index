@@ -118,7 +118,7 @@ export default function FitnessHeatmap({ records }: FitnessHeatmapProps) {
               onClick={() => setSelectedYear(y)}
               className={`rounded-full px-3 py-1 text-sm font-medium transition-colors ${
                 selectedYear === y
-                  ? "bg-foreground text-white"
+                  ? "bg-[#B83B5E] text-white"
                   : "bg-foreground/5 text-foreground/80 hover:bg-foreground/10"
               }`}
             >
@@ -178,7 +178,7 @@ export default function FitnessHeatmap({ records }: FitnessHeatmapProps) {
           <span>户外</span>
         </div>
         <div className="flex items-center gap-1">
-          <span className="inline-block h-3 w-3 rounded-sm" style={{ backgroundColor: "rgba(0,0,0,0.05)" }} />
+          <span className="inline-block h-3 w-3 rounded-sm bg-foreground/10" />
           <span>未打卡</span>
         </div>
       </div>

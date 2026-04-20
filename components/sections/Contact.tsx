@@ -3,11 +3,11 @@
 import { motion } from "framer-motion";
 
 const socialLinks = [
-  { name: "GitHub", href: "https://github.com/peterwangll" },
-  { name: "Email", href: "mailto:your-email@example.com" },
+  { name: "GitHub", href: "https://github.com/PeterWangLL" },
+  { name: "Email", href: "mailto:18136892032@163.com" },
 ];
 
-const words = "There are countless ways to tell a story about the world, this is mine.".split(" ");
+const words = "请不要相信，胜利就像山坡上的蒲公英一样唾手可得，但请相信，世上总有美好值得我们全力以赴，哪怕粉身碎骨。".split("");
 
 export default function Contact() {
   return (
@@ -21,7 +21,7 @@ export default function Contact() {
           visible: { transition: { staggerChildren: 0.08 } },
           hidden: {},
         }}
-        className="max-w-3xl text-center text-2xl font-medium leading-relaxed tracking-tight text-foreground/90 sm:text-3xl md:text-4xl"
+        className="max-w-3xl text-center text-xl font-medium leading-relaxed tracking-tight text-foreground/90 sm:text-2xl md:text-3xl"
       >
         &ldquo;
         {words.map((word, i) => (
