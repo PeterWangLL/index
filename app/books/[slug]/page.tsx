@@ -31,7 +31,7 @@ export default async function BookPage({
   return (
     <main className="mx-auto max-w-3xl px-6 py-24">
       <a
-        href="/#books"
+        href="/index/#books"
         className="text-sm text-foreground/60 hover:text-[#B83B5E] transition-colors"
       >
         ← 返回 Books

@@ -56,7 +56,7 @@ export default async function LifeCategoryPage({
       {/* Header */}
       <div className="mb-6">
         <a
-          href="/#life"
+          href="/index/#life"
           className="inline-flex items-center gap-1 text-sm text-foreground/60 hover:text-[#B83B5E] transition-colors"
         >
           <svg
@@ -84,7 +84,7 @@ export default async function LifeCategoryPage({
         {otherCategories.map((cat) => (
           <a
             key={cat.key}
-            href={`/life/${cat.key}`}
+            href={`/index/life/${cat.key}`}
             className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
               cat.key === category
                 ? "bg-[#B83B5E] text-white"
@@ -113,7 +113,7 @@ export default async function LifeCategoryPage({
       {/* Bottom back link */}
       <div className="mt-16 text-center">
         <a
-          href="/#life"
+          href="/index/#life"
           className="inline-flex items-center gap-2 rounded-full bg-foreground/5 px-5 py-2 text-sm font-medium text-foreground/80 hover:bg-foreground/10 transition-colors"
         >
           <svg

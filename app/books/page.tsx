@@ -13,7 +13,7 @@ export default function BooksPage() {
         {/* Header */}
         <div className="mb-8">
           <a
-            href="/#books"
+            href="/index/#books"
             className="inline-flex items-center gap-1 rounded-full bg-foreground/5 px-4 py-1.5 text-sm font-medium text-foreground/80 hover:bg-foreground/10 transition-colors"
           >
             <svg
@@ -72,7 +72,7 @@ export default function BooksPage() {
         {/* Bottom back link */}
         <div className="mt-16 text-center">
           <a
-            href="/#books"
+            href="/index/#books"
             className="inline-flex items-center gap-2 rounded-full bg-foreground/5 px-5 py-2 text-sm font-medium text-foreground/80 hover:bg-foreground/10 transition-colors"
           >
             <svg

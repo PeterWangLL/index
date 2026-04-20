@@ -12,7 +12,7 @@ export default function GamesPage() {
         {/* Header */}
         <div className="mb-8">
           <a
-            href="/#games"
+            href="/index/#games"
             className="inline-flex items-center gap-1 text-sm text-foreground/60 hover:text-[#B83B5E] transition-colors"
           >
             <svg
@@ -43,7 +43,7 @@ export default function GamesPage() {
         {/* Bottom back link */}
         <div className="mt-16 text-center">
           <a
-            href="/#games"
+            href="/index/#games"
             className="inline-flex items-center gap-2 rounded-full bg-foreground/5 px-5 py-2 text-sm font-medium text-foreground/80 hover:bg-foreground/10 transition-colors"
           >
             <svg
